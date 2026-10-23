@@ -4,6 +4,7 @@ import { useFrame, type ThreeEvent } from '@react-three/fiber'
 import { easing } from 'maath'
 import { SRGBColorSpace, Vector3, type Group, type MeshBasicMaterial, type Texture } from 'three'
 import type { CaseStudy, ScreenshotMedia } from '@/content/types'
+import { sceneCursor } from '@/lib/cursor'
 import { lightbox } from '@/lib/lightbox'
 import { overPageUi } from './overPageUi'
 import { useScene } from './SceneContext'
@@ -85,11 +86,11 @@ function OrbitCard({ item, shots, index, texture }: CardProps) {
     e.stopPropagation()
     if (overPageUi(e.nativeEvent)) return
     setHovered(true)
-    document.body.style.cursor = 'zoom-in'
+    sceneCursor.set('Zoom')
   }
   const out = () => {
     setHovered(false)
-    document.body.style.cursor = ''
+    sceneCursor.set(null)
   }
 
   return (

@@ -54,7 +54,7 @@ export function Nav() {
           ))}
         </ul>
 
-        <CvButton variant="primary" className="ml-auto min-h-10 py-2 md:ml-0" />
+        <CvButton variant="primary" className="ml-auto min-h-10 py-2 md:ml-0" magnetic />
 
         <Sheet>
           <SheetTrigger

@@ -1,5 +1,6 @@
 import { lazy, Suspense, useEffect, useRef, useState } from 'react'
 import { useCan3D } from '@/hooks/useCan3D'
+import { sceneCursor } from '@/lib/cursor'
 import { tour } from '@/lib/tour'
 import { cn } from '@/lib/utils'
 
@@ -44,7 +45,7 @@ export function SceneBackdrop() {
     const onMove = () => (pointerActive.current = true)
     const onLeave = () => {
       pointerActive.current = false
-      document.body.style.cursor = ''
+      sceneCursor.set(null)
     }
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })

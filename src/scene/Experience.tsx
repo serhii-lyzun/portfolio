@@ -1,6 +1,7 @@
 import type { RefObject } from 'react'
 import { Environment, Lightformer, Stars } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
+import { Bloom, EffectComposer } from '@react-three/postprocessing'
 import { Constellation } from './Constellation'
 import { LabelPortalContext } from './LabelPortal'
 
@@ -41,6 +42,8 @@ export default function Experience({
       frameloop={running ? 'always' : 'never'}
       onCreated={() => onReady?.()}
     >
+      {/* Opaque page-coloured background: post-processing output has no alpha */}
+      <color attach="background" args={['#070b14']} />
       <fog attach="fog" args={['#070b14', 9, 22]} />
       <ambientLight intensity={0.35} />
       <directionalLight position={[5, 6, 8]} intensity={1.2} />
@@ -68,6 +71,11 @@ export default function Experience({
       <LabelPortalContext.Provider value={labelLayer}>
         <Constellation pointerActive={pointerActive} />
       </LabelPortalContext.Provider>
+
+      {/* Soft glow on the brightest parts only: core, focused crystal, packets (plan § 4.6) */}
+      <EffectComposer multisampling={4}>
+        <Bloom mipmapBlur luminanceThreshold={0.75} luminanceSmoothing={0.15} intensity={0.55} />
+      </EffectComposer>
     </Canvas>
   )
 }

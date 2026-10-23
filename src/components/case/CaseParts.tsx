@@ -44,6 +44,7 @@ export function CaseLinks({ item, className }: { item: CaseStudy; className?: st
               href={link.href}
               external
               variant={i === 0 ? 'primary' : 'outline'}
+              magnetic
               icon={<Icon className="size-4" aria-hidden />}
               hint={domainOf(link.href)}
             >

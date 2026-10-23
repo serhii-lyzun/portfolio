@@ -20,6 +20,10 @@ type Props = {
   /** Small grey text after the label, e.g. the link's domain */
   hint?: string
   className?: string
+  /** Leans toward the cursor (CustomCursor) */
+  magnetic?: boolean
+  /** Custom cursor pill text; defaults to "Open ↗" for external links */
+  cursor?: string
 }
 
 export function LinkButton({
@@ -30,11 +34,15 @@ export function LinkButton({
   external = false,
   hint,
   className,
+  magnetic,
+  cursor,
 }: Props) {
   return (
     <a
       href={href}
       {...(external && { target: '_blank', rel: 'noopener noreferrer' })}
+      {...(magnetic && { 'data-magnetic': '' })}
+      {...(cursor !== undefined && { 'data-cursor': cursor })}
       className={cn(
         'inline-flex min-h-11 max-w-full items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium transition-colors',
         variants[variant],

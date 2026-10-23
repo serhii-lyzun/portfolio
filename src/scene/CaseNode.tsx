@@ -11,6 +11,7 @@ import {
 } from 'three'
 import type { CaseStudy } from '@/content/types'
 import { caseHref } from '@/hooks/useCaseRoute'
+import { sceneCursor } from '@/lib/cursor'
 import { scrollToCase, tour, useTour } from '@/lib/tour'
 import { glowTexture } from './glowTexture'
 import { orbitPosition } from './layout'
@@ -81,18 +82,20 @@ export function CaseNode({ item }: { item: CaseStudy }) {
       0.2,
       delta,
     )
-    easing.damp(halo.current, 'opacity', isHovered ? 0.75 : dimmed ? 0.12 : 0.32, 0.2, delta)
+    // Bloom provides most of the glow; the halo only hints at it
+    easing.damp(halo.current, 'opacity', isHovered ? 0.4 : dimmed ? 0.04 : 0.12, 0.2, delta)
   })
 
   const over = (e: ThreeEvent<PointerEvent>) => {
     e.stopPropagation()
     if (overPageUi(e.nativeEvent)) return
     setHovered(item.slug)
-    document.body.style.cursor = 'pointer'
+    // Hero click scrolls to the tour card; in the tour it opens the case
+    sceneCursor.set(tour.get().mode === 'cases' ? 'Open case' : 'Explore')
   }
   const out = () => {
     setHovered(null)
-    document.body.style.cursor = ''
+    sceneCursor.set(null)
   }
 
   return (
@@ -120,7 +123,7 @@ export function CaseNode({ item }: { item: CaseStudy }) {
           map={glowTexture()}
           color={color}
           transparent
-          opacity={0.32}
+          opacity={0.12}
           depthWrite={false}
           blending={AdditiveBlending}
         />

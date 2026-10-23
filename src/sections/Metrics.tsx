@@ -1,6 +1,7 @@
+import { CountUp } from '@/components/CountUp'
 import { profile } from '@/content/profile'
 
-/** Impact numbers. The count-up animation is added in M6. */
+/** Impact numbers, counting up when they scroll into view. */
 export function Metrics() {
   return (
     <section aria-label="Impact in numbers" className="mx-auto max-w-6xl px-4 sm:px-6">
@@ -17,7 +18,7 @@ export function Metrics() {
             <dt className="mt-2 text-sm leading-snug text-ink-muted">{m.label}</dt>
             <dd className="font-display text-4xl font-bold text-ink sm:text-5xl">
               <span className="text-coral">{m.prefix}</span>
-              {m.value}
+              <CountUp value={m.value} />
               <span className="text-coral">{m.suffix}</span>
             </dd>
           </div>

@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { CaseCard } from '@/components/case/CaseCard'
+import { Reveal } from '@/components/Reveal'
 import { SectionHeading } from '@/components/SectionHeading'
 import { cases } from '@/content/cases'
 import type { CaseSlug } from '@/content/types'
@@ -39,10 +40,14 @@ function CaseGrid() {
   const [featured, ...rest] = cases
   return (
     <div className="flex flex-col gap-6">
-      <CaseCard item={featured} />
+      <Reveal>
+        <CaseCard item={featured} />
+      </Reveal>
       <div className="grid gap-6 md:grid-cols-2">
-        {rest.map((item) => (
-          <CaseCard key={item.slug} item={item} />
+        {rest.map((item, i) => (
+          <Reveal key={item.slug} delay={(i % 2) * 120}>
+            <CaseCard item={item} />
+          </Reveal>
         ))}
       </div>
     </div>
@@ -81,7 +86,9 @@ function CaseTour() {
       <ol ref={list} className="flex flex-col">
         {cases.map((item) => (
           <li key={item.slug} data-case={item.slug} className="flex min-h-[78vh] items-center py-6">
-            <CaseCard item={item} variant="tour" />
+            <Reveal className="w-full">
+              <CaseCard item={item} variant="tour" />
+            </Reveal>
           </li>
         ))}
       </ol>

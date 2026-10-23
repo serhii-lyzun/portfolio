@@ -53,7 +53,7 @@ export function CoreNode() {
           map={glowTexture()}
           color={CORE_COLOR}
           transparent
-          opacity={0.45}
+          opacity={0.22}
           depthWrite={false}
           blending={AdditiveBlending}
         />

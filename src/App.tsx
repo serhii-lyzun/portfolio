@@ -1,4 +1,5 @@
 import { CaseSheet } from '@/components/case/CaseSheet'
+import { CustomCursor } from '@/components/CustomCursor'
 import { GlobalLightbox } from '@/components/GlobalLightbox'
 import { useCaseRoute } from '@/hooks/useCaseRoute'
 import { Cases } from '@/sections/Cases'
@@ -47,6 +48,7 @@ export default function App() {
 
       <CaseSheet item={activeCase} onClose={close} />
       <GlobalLightbox />
+      <CustomCursor />
     </>
   )
 }

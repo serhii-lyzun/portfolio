@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+import { useReveal } from '@/hooks/useReveal'
 import { cn } from '@/lib/utils'
 
 type Props = {
@@ -11,8 +12,9 @@ type Props = {
 }
 
 export function SectionHeading({ id, index, title, children, className }: Props) {
+  const ref = useReveal<HTMLElement>()
   return (
-    <header className={cn('mb-10 max-w-3xl sm:mb-14', className)}>
+    <header ref={ref} className={cn('mb-10 max-w-3xl sm:mb-14', className)}>
       <p className="font-display text-sm tracking-[0.3em] text-cyan uppercase">
         <span className="text-ink-muted">{index} /</span> {title}
       </p>

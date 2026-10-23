@@ -1,6 +1,7 @@
 import { MapPin } from 'lucide-react'
 import { contactIcons } from '@/components/iconMaps'
 import { LinkButton } from '@/components/LinkButton'
+import { Reveal } from '@/components/Reveal'
 import { SectionHeading } from '@/components/SectionHeading'
 import { profile } from '@/content/profile'
 import { testimonials } from '@/content/testimonials'
@@ -8,7 +9,7 @@ import { testimonials } from '@/content/testimonials'
 export function Contact() {
   return (
     <section aria-labelledby="contact" className="mx-auto max-w-6xl px-4 py-24 sm:px-6 sm:py-32">
-      <div className="relative overflow-hidden rounded-3xl border border-ink/10 bg-night-900/70 p-8 sm:p-14">
+      <Reveal className="relative overflow-hidden rounded-3xl border border-ink/10 bg-night-900/70 p-8 sm:p-14">
         <div
           aria-hidden
           className="pointer-events-none absolute -right-20 -bottom-32 size-96 rounded-full bg-coral/15 blur-3xl"
@@ -36,7 +37,7 @@ export function Contact() {
               const Icon = contactIcons[c.kind]
               return (
                 <li key={c.kind}>
-                  <LinkButton href={c.href} external icon={<Icon className="size-4" />}>
+                  <LinkButton href={c.href} external magnetic icon={<Icon className="size-4" />}>
                     {c.label}
                   </LinkButton>
                 </li>
@@ -48,7 +49,7 @@ export function Contact() {
           <MapPin className="size-4 text-cyan" aria-hidden />
           {profile.location} · {profile.availability}
         </p>
-      </div>
+      </Reveal>
     </section>
   )
 }

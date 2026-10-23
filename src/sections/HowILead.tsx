@@ -1,3 +1,4 @@
+import { Reveal } from '@/components/Reveal'
 import { SectionHeading } from '@/components/SectionHeading'
 import { leadership } from '@/content/leadership'
 
@@ -11,15 +12,17 @@ export function HowILead() {
       </SectionHeading>
 
       <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        {leadership.map((story) => (
-          <li
+        {leadership.map((story, i) => (
+          <Reveal
+            as="li"
             key={story.title}
+            delay={i * 90}
             className="flex flex-col rounded-2xl border border-ink/10 bg-night-900/70 p-6"
           >
             <h3 className="font-display text-lg font-bold">{story.title}</h3>
             <p className="mt-3 flex-1 text-sm leading-relaxed text-ink-muted">{story.story}</p>
             <p className="mt-5 font-display font-bold text-coral">{story.proof}</p>
-          </li>
+          </Reveal>
         ))}
       </ul>
     </section>
