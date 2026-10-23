@@ -9,6 +9,8 @@ export function useReveal<T extends HTMLElement>() {
   useEffect(() => {
     const el = ref.current
     if (!el) return
+    // Already on screen at load (prerendered and painted): don't hide it again
+    if (el.getBoundingClientRect().top < window.innerHeight * 0.9) return
     el.classList.add('reveal')
     const io = new IntersectionObserver(
       ([entry]) => {

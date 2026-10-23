@@ -24,6 +24,8 @@ export function SceneBackdrop() {
   const labels = useRef<HTMLDivElement>(null!)
   const [running, setRunning] = useState(true)
   const [ready, setReady] = useState(false)
+  // Load the 3D chunk once the page is idle, so hydration and first input aren't blocked
+  const idle = useIdleAfterLoad(can3D)
 
   useEffect(() => {
     if (!can3D) return
@@ -64,7 +66,7 @@ export function SceneBackdrop() {
     }
   }, [can3D])
 
-  if (!can3D) return null
+  if (!can3D || !idle) return null
   const root = document.getElementById('root')
   if (!root) return null
 
@@ -91,4 +93,27 @@ export function SceneBackdrop() {
       <div className="absolute inset-y-0 left-0 w-1/2 bg-gradient-to-r from-night-950/90 via-night-950/60 to-transparent" />
     </div>
   )
+}
+
+/** True once the window has loaded and the main thread is idle (at most ~2 s later). */
+function useIdleAfterLoad(enabled: boolean) {
+  const [idle, setIdle] = useState(false)
+  useEffect(() => {
+    if (!enabled) return
+    let handle = 0
+    const schedule = () => {
+      handle =
+        typeof window.requestIdleCallback === 'function'
+          ? window.requestIdleCallback(() => setIdle(true), { timeout: 2000 })
+          : window.setTimeout(() => setIdle(true), 800) // Safari
+    }
+    if (document.readyState === 'complete') schedule()
+    else window.addEventListener('load', schedule, { once: true })
+    return () => {
+      window.removeEventListener('load', schedule)
+      if (typeof window.cancelIdleCallback === 'function') window.cancelIdleCallback(handle)
+      window.clearTimeout(handle)
+    }
+  }, [enabled])
+  return idle
 }

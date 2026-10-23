@@ -8,3 +8,6 @@ declare module '*?picture' {
   }
   export default picture
 }
+
+/** Build year, injected by vite.config.ts `define` (same value in the prerender and the client) */
+declare const __BUILD_YEAR__: number

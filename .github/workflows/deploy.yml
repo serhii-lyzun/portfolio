@@ -34,10 +34,42 @@ jobs:
       - run: npm run format:check
       - run: npm run test
       - run: npm run build
+      # Bundle budgets from the plan (§ 4.4): initial JS ≤ 150 KB, 3D chunk ≤ 350 KB gzipped
+      - run: npm run size
+
+      # Real-browser smoke tests (desktop + phone) against the production build
+      - run: npx playwright install --with-deps chromium
+      - run: npm run e2e
+      - if: failure()
+        uses: actions/upload-artifact@v7
+        with:
+          name: playwright-report
+          path: test-results
+          retention-days: 7
 
       - uses: actions/upload-pages-artifact@v5
         with:
           path: dist
+
+  # Lighthouse (mobile): reports scores against the plan's targets. Kept out of the deploy path
+  # because scores on shared CI runners vary from run to run.
+  lighthouse:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - run: npx @lhci/cli@0.15.1 autorun
+      - if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: lighthouse-report
+          path: lhci
+          retention-days: 14
 
   deploy:
     # Pull requests only run the checks above; main gets deployed.

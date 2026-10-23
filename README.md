@@ -24,15 +24,19 @@ npm run dev        # http://localhost:5173/portfolio/
 
 | Script | What it does |
 |---|---|
-| `npm run build` | Type-check and build to `dist/` |
+| `npm run build` | Type-check, build to `dist/` and prerender the page into `index.html` |
 | `npm run preview` | Serve the production build locally |
+| `npm run size` | Check gzipped bundle budgets (after a build) |
 | `npm run lint` | oxlint |
 | `npm run format` / `format:check` | Prettier |
-| `npm test` | Vitest |
+| `npm test` | Vitest unit tests (content rules, tour state, diagram layout) |
+| `npm run e2e` | Playwright smoke tests, desktop + phone (first time: `npx playwright install chromium`) |
+
+Append `?3d=off` to the URL to see the 2D version of the site (what phones and devices without WebGL get).
 
 ## Deploy
 
-Every push to `main` runs `.github/workflows/deploy.yml`: lint → format check → tests → build → publish to GitHub Pages. Pull requests run the checks only.
+Every push to `main` runs `.github/workflows/deploy.yml`: lint → format check → unit tests → build → size budgets → Playwright → publish to GitHub Pages. A separate Lighthouse job reports mobile scores without blocking the deploy. Pull requests run the checks only.
 
 ## Updating the CV
 

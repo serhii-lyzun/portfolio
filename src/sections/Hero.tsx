@@ -96,7 +96,7 @@ export function Hero() {
         <Picture
           picture={profile.photo}
           alt={profile.photoAlt}
-          sizes="(min-width: 768px) 420px, 320px"
+          sizes="(min-width: 768px) 420px, (min-width: 640px) 384px, 176px"
           priority
           className="relative block"
           imgClassName="mx-auto h-auto w-full max-w-[420px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_45%,black_50%,transparent_100%)]"

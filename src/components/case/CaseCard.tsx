@@ -116,7 +116,12 @@ export function CaseCard({ item, variant = 'grid' }: Props) {
         <div className="relative">
           <CaseMedia
             item={item}
-            sizes={featured ? '(min-width: 1024px) 45vw, 90vw' : '(min-width: 768px) 40vw, 90vw'}
+            // Card stack images are ~84% of the card's inner width
+            sizes={
+              featured
+                ? '(min-width: 1024px) 40vw, (min-width: 640px) 80vw, calc(84vw - 60px)'
+                : '(min-width: 768px) 36vw, calc(84vw - 60px)'
+            }
           />
         </div>
       )}

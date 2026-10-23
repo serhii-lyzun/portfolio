@@ -16,10 +16,12 @@ const readSlug = () =>
  * Plain section anchors like `#cases` are left alone.
  */
 export function useCaseRoute() {
-  const [slug, setSlug] = useState(readSlug)
+  // Starts closed (matches the prerendered HTML); a deep link opens right after hydration
+  const [slug, setSlug] = useState<string | null>(null)
 
   useEffect(() => {
     const onHashChange = () => setSlug(readSlug())
+    onHashChange()
     window.addEventListener('hashchange', onHashChange)
     return () => window.removeEventListener('hashchange', onHashChange)
   }, [])
