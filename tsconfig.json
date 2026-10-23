@@ -4,5 +4,9 @@
     { "path": "./tsconfig.app.json" },
     { "path": "./tsconfig.node.json" },
     { "path": "./tsconfig.test.json" }
-  ]
+  ],
+  // Read by tooling (shadcn CLI) only; the real compiler settings live in the referenced configs.
+  "compilerOptions": {
+    "paths": { "@/*": ["./src/*"] }
+  }
 }

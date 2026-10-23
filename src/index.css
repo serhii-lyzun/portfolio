@@ -1,24 +1,60 @@
 @import 'tailwindcss';
+@import 'tw-animate-css';
 
 /* Design tokens: dark "night constellation" theme (plan § 4.6) */
 @theme {
   --color-night-950: #070b14;
   --color-night-900: #0c1222;
   --color-night-800: #141c31;
+  --color-night-700: #1e2840;
   --color-ink: #e8ecf4;
   --color-ink-muted: #9aa5bb;
   --color-coral: #ff5a4e;
   --color-coral-soft: #ff8a7f;
   --color-cyan: #3fe0e8;
 
+  /* shadcn/ui token names, mapped onto the palette above */
+  --color-background: var(--color-night-900);
+  --color-foreground: var(--color-ink);
+  --color-muted-foreground: var(--color-ink-muted);
+  --color-primary: var(--color-coral);
+  --color-primary-foreground: var(--color-night-950);
+  --color-secondary: var(--color-night-800);
+  --color-secondary-foreground: var(--color-ink);
+  --color-accent: var(--color-night-700);
+  --color-accent-foreground: var(--color-ink);
+  --color-destructive: #f43f5e;
+  --color-border: rgb(232 236 244 / 0.12);
+  --color-input: rgb(232 236 244 / 0.16);
+  --color-ring: var(--color-cyan);
+
   --font-display: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
   --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Dashes travelling along diagram edges (DiagramView, EcosystemMap) */
+@keyframes flow {
+  to {
+    stroke-dashoffset: -16;
+  }
 }
 
 @layer base {
   html {
     color-scheme: dark;
     background-color: var(--color-night-950);
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  * {
+    @apply border-border;
   }
 
   body {
