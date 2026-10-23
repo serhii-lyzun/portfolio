@@ -30,7 +30,8 @@ npm run dev        # http://localhost:5173/portfolio/
 | `npm run lint` | oxlint |
 | `npm run format` / `format:check` | Prettier |
 | `npm test` | Vitest unit tests (content rules, tour state, diagram layout) |
-| `npm run e2e` | Playwright smoke tests, desktop + phone (first time: `npx playwright install chromium`) |
+| `npm run e2e` | Playwright smoke tests in Chrome, Firefox, Safari (WebKit), Android and iPhone profiles (first time: `npx playwright install chromium firefox webkit`) |
+| `npm run og` | Re-render the link-preview image and touch icon after changing the headline, facts or photo |
 
 Append `?3d=off` to the URL to see the 2D version of the site (what phones and devices without WebGL get).
 

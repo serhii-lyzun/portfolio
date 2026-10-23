@@ -99,7 +99,7 @@ test('no horizontal scrolling', async ({ page }) => {
 test('desktop: the 3D scene loads after the page and drives the case tour', async ({
   page,
 }, testInfo) => {
-  test.skip(testInfo.project.name !== 'desktop', 'phones get the 2D site')
+  test.skip(['mobile', 'iphone'].includes(testInfo.project.name), 'phones get the 2D site')
   await page.goto('./')
   const webgl = await page.evaluate(() => !!document.createElement('canvas').getContext('webgl2'))
   test.skip(!webgl, 'this browser has no WebGL')

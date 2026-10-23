@@ -1,0 +1,138 @@
+<!doctype html>
+<!-- Template for public/og-image.jpg (1200×630 link preview). Rendered by scripts/og-image.mjs. -->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <style>
+      @font-face {
+        font-family: 'Inter';
+        src: url('../node_modules/@fontsource-variable/inter/files/inter-latin-wght-normal.woff2');
+        font-weight: 100 900;
+      }
+      @font-face {
+        font-family: 'Space Grotesk';
+        src: url('../node_modules/@fontsource-variable/space-grotesk/files/space-grotesk-latin-wght-normal.woff2');
+        font-weight: 300 700;
+      }
+      * {
+        margin: 0;
+        box-sizing: border-box;
+      }
+      body {
+        width: 1200px;
+        height: 630px;
+        overflow: hidden;
+        background: #070b14;
+        color: #e8ecf4;
+        font-family: 'Inter', sans-serif;
+        position: relative;
+      }
+      .glow {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(90px);
+      }
+      .lines {
+        position: absolute;
+        inset: 0;
+      }
+      .text {
+        position: absolute;
+        left: 72px;
+        top: 0;
+        bottom: 0;
+        width: 640px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .eyebrow {
+        font-family: 'Space Grotesk';
+        font-size: 20px;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: #3fe0e8;
+      }
+      h1 {
+        margin-top: 18px;
+        font-family: 'Space Grotesk';
+        font-weight: 700;
+        font-size: 92px;
+        line-height: 1;
+      }
+      .headline {
+        margin-top: 22px;
+        font-family: 'Space Grotesk';
+        font-size: 34px;
+        color: #ff5a4e;
+      }
+      .facts {
+        margin-top: 34px;
+        display: flex;
+        gap: 12px;
+      }
+      .facts span {
+        border: 1.5px solid rgb(232 236 244 / 0.2);
+        border-radius: 999px;
+        padding: 8px 18px;
+        font-size: 22px;
+      }
+      .url {
+        margin-top: 40px;
+        font-size: 22px;
+        color: #9aa5bb;
+      }
+      .photo {
+        position: absolute;
+        right: 40px;
+        bottom: -40px;
+        width: 470px;
+        mask-image: radial-gradient(ellipse 50% 50% at 50% 45%, black 50%, transparent 100%);
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      class="glow"
+      style="width: 520px; height: 520px; right: 40px; top: 60px; background: rgb(255 90 78 / 0.25)"
+    ></div>
+    <div
+      class="glow"
+      style="
+        width: 600px;
+        height: 600px;
+        left: -200px;
+        top: -260px;
+        background: rgb(63 224 232 / 0.12);
+      "
+    ></div>
+
+    <!-- A hint of the constellation: filaments from the API core to the case nodes -->
+    <svg class="lines" viewBox="0 0 1200 630">
+      <g stroke-width="1.5" fill="none" opacity="0.55">
+        <path d="M940 330 Q 860 200 735 170" stroke="#a78bfa" />
+        <path d="M940 330 Q 1050 230 1150 190" stroke="#ff5a4e" />
+        <path d="M940 330 Q 840 430 740 470" stroke="#34d399" />
+        <path d="M940 330 Q 1060 430 1140 480" stroke="#fbbf24" />
+      </g>
+      <g>
+        <circle cx="735" cy="170" r="9" fill="#a78bfa" />
+        <circle cx="1150" cy="190" r="12" fill="#ff5a4e" />
+        <circle cx="740" cy="470" r="9" fill="#34d399" />
+        <circle cx="1140" cy="480" r="9" fill="#fbbf24" />
+      </g>
+    </svg>
+
+    <img class="photo" src="../src/assets/photo/serhii-lyzun.jpg" alt="" />
+
+    <div class="text">
+      <p class="eyebrow">Logistics &amp; route planning</p>
+      <h1>Serhii Lyzun</h1>
+      <p class="headline">Senior Full-Stack Engineer<br />(React / Node.js)</p>
+      <div class="facts">
+        <span>9+ years</span><span>15+ launches</span><span>Teams of 5–15</span>
+      </div>
+      <p class="url">serhii-lyzun.github.io/portfolio</p>
+    </div>
+  </body>
+</html>

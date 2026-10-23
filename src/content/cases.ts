@@ -253,7 +253,7 @@ export const cases: CaseStudy[] = [
     headlineMetric: 'Public SDK + docs',
     metrics: [
       { value: 'npm', label: 'public TypeScript package' },
-      { value: '8+', label: 'platform sub-systems, SDK is one' },
+      { value: '8+', label: 'platform sub-systems, the SDK is one of them' },
     ],
     node: {
       color: '#fbbf24',

@@ -8,7 +8,7 @@ export function Footer() {
           © {__BUILD_YEAR__} {profile.name}
         </p>
         <p>
-          Built with React, TypeScript and Tailwind ·{' '}
+          Built with React, TypeScript, Three.js and Tailwind ·{' '}
           <a
             href="https://github.com/serhii-lyzun/portfolio"
             target="_blank"

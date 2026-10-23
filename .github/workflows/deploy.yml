@@ -37,8 +37,9 @@ jobs:
       # Bundle budgets from the plan (§ 4.4): initial JS ≤ 150 KB, 3D chunk ≤ 350 KB gzipped
       - run: npm run size
 
-      # Real-browser smoke tests (desktop + phone) against the production build
-      - run: npx playwright install --with-deps chromium
+      # Real-browser smoke tests against the production build: Chrome, Firefox and Safari's engine
+      # (WebKit) on desktop, plus Android (Chrome) and iPhone (WebKit) phone profiles
+      - run: npx playwright install --with-deps chromium firefox webkit
       - run: npm run e2e
       - if: failure()
         uses: actions/upload-artifact@v7

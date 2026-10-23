@@ -21,6 +21,16 @@ export default defineConfig({
     },
     // Phone path: the static case grid, no WebGL
     { name: 'mobile', use: { ...devices['Pixel 7'] } },
+    // Cross-browser (plan M8): Firefox and Safari's engine on desktop, Safari on iPhone
+    {
+      name: 'firefox',
+      use: { ...devices['Desktop Firefox'], viewport: { width: 1440, height: 900 } },
+    },
+    {
+      name: 'webkit',
+      use: { ...devices['Desktop Safari'], viewport: { width: 1440, height: 900 } },
+    },
+    { name: 'iphone', use: { ...devices['iPhone 14'] } },
   ],
   webServer: {
     command: `npm run preview -- --port ${PORT} --strictPort`,

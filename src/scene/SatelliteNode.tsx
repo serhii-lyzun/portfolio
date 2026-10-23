@@ -47,7 +47,7 @@ export function SatelliteNode({ satellite }: { satellite: Satellite }) {
         pointerEvents="none"
       >
         <p
-          className="w-max text-[11px] text-ink-muted transition-opacity duration-300 select-none"
+          className="w-max max-w-[6.5rem] text-center text-[11px] leading-tight text-ink-muted transition-opacity duration-300 select-none"
           style={{ opacity: labelOpacity(satellite, hovered, related) }}
         >
           {satellite.label}

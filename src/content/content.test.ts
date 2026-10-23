@@ -6,6 +6,7 @@ import { cases, featuredCase } from './cases'
 import { CORE_ID, coreConnectedCases, ecosystem } from './ecosystem'
 import { leadership } from './leadership'
 import { CV_URL, profile } from './profile'
+import { SITE_URL, structuredData, structuredDataTag } from './structuredData'
 
 const publicDir = fileURLToPath(new URL('../../public/', import.meta.url))
 
@@ -110,5 +111,27 @@ describe('ecosystem', () => {
 describe('leadership', () => {
   it('backs every story with proof', () => {
     for (const s of leadership) expect(s.proof).not.toBe('')
+  })
+})
+
+describe('structured data (JSON-LD)', () => {
+  it('describes the person behind the page with absolute https URLs', () => {
+    const person = structuredData.mainEntity
+    expect(person.name).toBe(profile.name)
+    expect(person.url).toBe(SITE_URL)
+    for (const url of [person.url, person.image, ...person.sameAs])
+      expect(url).toMatch(/^https:\/\//)
+  })
+
+  it('points its image at the link-preview file in public/', () => {
+    const file = structuredData.mainEntity.image.replace(SITE_URL, '')
+    expect(existsSync(publicDir + file)).toBe(true)
+  })
+
+  it('is valid JSON that cannot close its own <script> tag', () => {
+    const tag = structuredDataTag()
+    const json = tag.replace(/^<script[^>]*>/, '').replace(/<\/script>$/, '')
+    expect(json).not.toContain('<')
+    expect(JSON.parse(json)['@type']).toBe('ProfilePage')
   })
 })
