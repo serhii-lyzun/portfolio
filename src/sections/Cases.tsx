@@ -12,8 +12,8 @@ const INTRO =
 
 /**
  * Desktop with 3D: a scroll tour. Cards scroll on the left; the constellation (fixed backdrop)
- * flies to whichever card is in the middle of the screen (plan § 2.1, M5).
- * Everyone else: the static case grid from M3.
+ * flies to whichever card is in the middle of the screen.
+ * Everyone else: the static case grid.
  */
 export function Cases() {
   const can3D = useCan3D()

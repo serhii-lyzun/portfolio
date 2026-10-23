@@ -14,7 +14,7 @@ import { CaseIcon, CaseLinks, CaseMedia, CaseMetrics, NdaBadge, StackChips } fro
 
 type Props = { item: CaseStudy | undefined; onClose: () => void }
 
-/** Full case in STAR format (Lesson 29) + the Lesson 30 deep-dive, deep-linkable via `#/case/<slug>`. */
+/** Full case in STAR format + the deep-dive, deep-linkable via `#/case/<slug>`. */
 export function CaseSheet({ item, onClose }: Props) {
   const scroller = useRef<HTMLDivElement>(null)
 

@@ -1,13 +1,12 @@
-// Source: home-work-lesson-29.md (header + metrics) and the Senior Full-Stack master CV.
 import photo from '@/assets/photo/serhii-lyzun.jpg?picture'
 import type { Credential, Profile } from './types'
 
-/** Opens in a new tab with the browser's PDF preview (plan D6) */
+/** Opens in a new tab with the browser's PDF preview */
 export const CV_URL = `${import.meta.env.BASE_URL}cv/Serhii_Lyzun_Senior_Full_Stack_Engineer.pdf`
 
 export const profile: Profile = {
   name: 'Serhii Lyzun',
-  // Must match the CV headline and LinkedIn (Lesson 29)
+  // Must match the CV headline and LinkedIn
   headline: 'Senior Full-Stack Engineer (React / Node.js)',
   domain: 'Logistics & route planning',
   summary:

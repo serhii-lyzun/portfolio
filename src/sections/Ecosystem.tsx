@@ -6,8 +6,8 @@ import type { CaseSlug } from '@/content/types'
 import { caseHref } from '@/hooks/useCaseRoute'
 import { cn } from '@/lib/utils'
 
-// Static 2D map of the constellation (plan § 2.2 "Ecosystem overview"). It doubles as the
-// no-WebGL / reduced-motion fallback in M7. Positions are % of the map box.
+// Static 2D map of the constellation. It doubles as the
+// no-WebGL / reduced-motion fallback. Positions are % of the map box.
 const POSITIONS: Record<string, [x: number, y: number]> = {
   [CORE_ID]: [42, 50],
   web: [42, 12],

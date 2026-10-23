@@ -1,3 +1,4 @@
+import { BackToTop } from '@/components/BackToTop'
 import { CaseSheet } from '@/components/case/CaseSheet'
 import { CustomCursor } from '@/components/CustomCursor'
 import { GlobalLightbox } from '@/components/GlobalLightbox'
@@ -48,6 +49,7 @@ export default function App() {
 
       <CaseSheet item={activeCase} onClose={close} />
       <GlobalLightbox />
+      <BackToTop />
       <CustomCursor />
     </>
   )

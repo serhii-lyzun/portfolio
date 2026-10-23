@@ -2,7 +2,7 @@ import { Reveal } from '@/components/Reveal'
 import { SectionHeading } from '@/components/SectionHeading'
 import { leadership } from '@/content/leadership'
 
-/** Soft skills as stories with proof, not a list of adjectives (Lesson 30). */
+/** Soft skills as stories with proof, not a list of adjectives. */
 export function HowILead() {
   return (
     <section aria-labelledby="leadership" className="mx-auto max-w-6xl px-4 py-24 sm:px-6 sm:py-32">

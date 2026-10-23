@@ -1,4 +1,4 @@
-// schema.org JSON-LD for search engines (plan § 4.5), built from the same content as the page
+// schema.org JSON-LD for search engines, built from the same content as the page
 // and injected into <head> by the prerender (scripts/prerender.mjs).
 import { profile } from './profile'
 

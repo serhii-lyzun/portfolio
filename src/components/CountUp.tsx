@@ -4,7 +4,7 @@ const DURATION = 1400
 const easeOutCubic = (t: number) => 1 - (1 - t) ** 3
 
 /**
- * Counts from 0 to `value` when first scrolled into view (plan § 2.2, Carl Gordon-style stats).
+ * Counts from 0 to `value` when first scrolled into view.
  * Reduced motion: shows the final value straight away. Screen readers always get the final value.
  */
 export function CountUp({ value }: { value: number }) {

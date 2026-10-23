@@ -1,4 +1,4 @@
-// Fails the build when the bundles outgrow the plan's budgets (PORTFOLIO_SITE_PLAN.md § 4.4).
+// Fails the build when the bundles outgrow their budgets.
 // Usage: node scripts/check-size.mjs   (after `vite build`)
 import { readdirSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'

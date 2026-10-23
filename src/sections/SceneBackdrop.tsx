@@ -12,7 +12,7 @@ const RAMP = 0.35
 const clamp01 = (v: number) => Math.min(Math.max(v, 0), 1)
 
 /**
- * The 3D constellation as a fixed full-screen backdrop (plan § 2.2): behind the hero, then
+ * The 3D constellation as a fixed full-screen backdrop: behind the hero, then
  * beside the case tour, fading out in between and after. Rendering stops while it is invisible.
  * Desktop with mouse + WebGL + motion allowed only; everyone else keeps the ambient glow, and
  * all content stays plain HTML.

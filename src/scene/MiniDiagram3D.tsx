@@ -27,7 +27,7 @@ const OFFSET = new Vector3(0, -2.3, 0.8)
 
 /**
  * For cases without screenshots (AI & MCP, NDA): the architecture diagram unfolds under the
- * crystal in 3D, with packets flowing along its edges (plan § 3).
+ * crystal in 3D, with packets flowing along its edges.
  */
 export function MiniDiagram3D({ item, diagram }: { item: CaseStudy; diagram: DiagramMedia }) {
   const { live } = useScene()

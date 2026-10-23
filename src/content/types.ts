@@ -1,5 +1,5 @@
-// Content model for the portfolio (PORTFOLIO_SITE_PLAN.md § 4.3).
-// The UI decides how to present a case only from `links` and `media[].kind` (plan § 3).
+// Content model for the portfolio.
+// The UI decides how to present a case only from `links` and `media[].kind`.
 
 export type Picture = {
   sources: Record<string, string>
@@ -35,7 +35,7 @@ export type CaseSlug = 'excel-add-in' | 'stripe-billing' | 'ai-mcp' | 'map-sdk' 
 
 export type CaseStudy = {
   slug: CaseSlug
-  /** The interview "fire" case (Lesson 30): biggest node, first in the tour */
+  /** The featured case: biggest node, first in the tour */
   featured?: boolean
   title: string
   /** One line under the title */
@@ -53,7 +53,7 @@ export type CaseStudy = {
     action: string[]
     result: string[]
   }
-  /** Extended detail for the deep-dive view only (Lesson 30) */
+  /** Extended detail for the deep-dive view only */
   deepDive?: {
     approach: { title: string; text: string }[]
     hardestPart?: string
@@ -65,7 +65,7 @@ export type CaseStudy = {
   headlineMetric: string
   /** Big numbers on the case card */
   metrics: { value: string; label: string }[]
-  /** 3D constellation placement (plan § 2) */
+  /** 3D constellation placement */
   node: {
     color: string
     size: number
@@ -121,10 +121,18 @@ export type Credential = {
 }
 
 export type Testimonial = {
-  quote: string
+  /** Verbatim from LinkedIn; paragraphs as separate strings */
+  quote: string[]
   name: string
+  /** Their role, as on their LinkedIn headline */
   role: string
-  company: string
+  company?: string
+  /** How they worked with Serhii, as LinkedIn states it */
+  relation: string
+  /** Pull quote for the featured card: a sentence copied verbatim from `quote` */
+  highlight?: string
+  /** Date given, ISO (YYYY-MM-DD) */
+  date: string
   href?: string
 }
 

@@ -14,8 +14,8 @@ type Props = {
 }
 
 /**
- * Screenshots as a fanned stack of browser windows (plan § 3). Hover/focus spreads the cards;
- * click opens the lightbox on that screenshot. The 3D version of this lives in the scene (M5).
+ * Screenshots as a fanned stack of browser windows. Hover/focus spreads the cards;
+ * click opens the lightbox on that screenshot. The 3D version of this lives in the scene.
  */
 export function CardStack({
   images,

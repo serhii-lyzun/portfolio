@@ -9,6 +9,7 @@ import {
   SheetTrigger,
 } from '@/components/ui/sheet'
 import { profile } from '@/content/profile'
+import { testimonials } from '@/content/testimonials'
 import { useScrollDirection } from '@/hooks/useScrollDirection'
 import { cn } from '@/lib/utils'
 
@@ -16,10 +17,12 @@ const navLinks = [
   { href: '#cases', label: 'Cases' },
   { href: '#ecosystem', label: 'Ecosystem' },
   { href: '#leadership', label: 'How I lead' },
+  // The section only renders once there are recommendations
+  ...(testimonials.length > 0 ? [{ href: '#testimonials', label: 'Recommendations' }] : []),
   { href: '#contact', label: 'Contact' },
 ]
 
-/** Sticky top nav: hides on scroll down, returns on scroll up (plan § 2.2). */
+/** Sticky top nav: hides on scroll down, returns on scroll up. */
 export function Nav() {
   const { hidden, scrolled } = useScrollDirection()
 
@@ -41,12 +44,12 @@ export function Nav() {
           {profile.name}
         </a>
 
-        <ul className="ml-auto hidden items-center gap-1 md:flex">
+        <ul className="ml-auto hidden items-center gap-1 lg:flex">
           {navLinks.map((link) => (
             <li key={link.href}>
               <a
                 href={link.href}
-                className="rounded-full px-4 py-2 text-sm text-ink-muted transition-colors hover:text-ink"
+                className="rounded-full px-4 py-2 text-sm whitespace-nowrap text-ink-muted transition-colors hover:text-ink"
               >
                 {link.label}
               </a>
@@ -54,11 +57,11 @@ export function Nav() {
           ))}
         </ul>
 
-        <CvButton variant="primary" className="ml-auto min-h-10 py-2 md:ml-0" magnetic />
+        <CvButton variant="primary" className="ml-auto min-h-10 py-2 lg:ml-0" magnetic />
 
         <Sheet>
           <SheetTrigger
-            className="inline-flex size-10 items-center justify-center rounded-full border border-ink/20 md:hidden"
+            className="inline-flex size-10 items-center justify-center rounded-full border border-ink/20 lg:hidden"
             aria-label="Open menu"
           >
             <Menu className="size-5" />

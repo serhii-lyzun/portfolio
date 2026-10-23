@@ -11,7 +11,7 @@ function trackErrors(page: Page) {
   return errors
 }
 
-test('hero shows the Lesson 29 must-haves and loads without errors', async ({ page }) => {
+test('hero shows the must-haves and loads without errors', async ({ page }) => {
   const errors = trackErrors(page)
   await page.goto('./')
 
@@ -79,6 +79,37 @@ test('screenshots open in the lightbox and can be browsed', async ({ page }) => 
   await page.keyboard.press('ArrowRight')
   await expect(lightbox.getByText('2 / 2')).toBeVisible()
   await expect(lightbox.getByText('Microsoft Marketplace listing')).toBeVisible()
+  await lightbox.getByRole('button', { name: 'Show screenshot 1' }).click()
+  await expect(lightbox.getByText('1 / 2')).toBeVisible()
+})
+
+test('a section title puts its anchor in the URL and copies the link', async ({
+  page,
+  context,
+  browserName,
+}) => {
+  if (browserName === 'chromium')
+    await context.grantPermissions(['clipboard-read', 'clipboard-write'])
+  await page.goto('./?3d=off')
+  await page.getByRole('link', { name: 'Ecosystem', exact: true }).last().click()
+  await expect(page).toHaveURL(/\?3d=off#ecosystem$/)
+  if (browserName === 'chromium') {
+    await expect(page.getByText('Link copied')).toBeVisible()
+    expect(await page.evaluate(() => navigator.clipboard.readText())).toMatch(/#ecosystem$/)
+  }
+})
+
+test('back-to-top button appears after scrolling and returns to the hero', async ({ page }) => {
+  await page.goto('./?3d=off')
+  // Hidden from assistive tech until it appears, so select it by its label
+  const button = page.locator('button[aria-label="Back to top"]')
+  await expect(button).toHaveCSS('opacity', '0')
+  await page.evaluate(() =>
+    window.scrollTo({ top: document.body.scrollHeight, behavior: 'instant' }),
+  )
+  await expect(button).toHaveCSS('opacity', '1')
+  await button.click()
+  await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(0)
 })
 
 test('2D fallback has no canvas and keeps the ecosystem map readable', async ({ page }) => {

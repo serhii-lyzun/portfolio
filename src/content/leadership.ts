@@ -1,4 +1,4 @@
-// "How I lead": soft skills told as stories (Lesson 30). Source: how-work-lesson-30.md + master CV.
+// "How I lead": soft skills told as stories.
 import type { LeadershipStory } from './types'
 
 export const leadership: LeadershipStory[] = [

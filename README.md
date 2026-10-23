@@ -4,13 +4,11 @@ Portfolio of **Serhii Lyzun — Senior Full-Stack Engineer (React / Node.js)**.
 
 **Live:** https://serhii-lyzun.github.io/portfolio/
 
-- Case studies (STAR): [home-work-lesson-29.md](home-work-lesson-29.md)
-- Interview "fire" case: [how-work-lesson-30.md](how-work-lesson-30.md)
-- Site plan & architecture: [PORTFOLIO_SITE_PLAN.md](PORTFOLIO_SITE_PLAN.md)
+Five commercial case studies in STAR format (Situation, Task, Action, Result), an ecosystem map, leadership stories and LinkedIn recommendations, presented as an interactive 3D constellation.
 
 ## Stack
 
-Vite · React 19 · TypeScript · Tailwind CSS v4 · Three.js (React Three Fiber + drei) · GSAP · Motion
+Vite · React 19 · TypeScript · Tailwind CSS v4 · Three.js (React Three Fiber + drei) · shadcn/ui
 
 ## Develop
 
@@ -41,4 +39,4 @@ Every push to `main` runs `.github/workflows/deploy.yml`: lint → format check 
 
 ## Updating the CV
 
-The CV button opens `public/cv/Serhii_Lyzun_Senior_Full_Stack_Engineer.pdf` in a new tab. To update it, replace that file with the new export of the Senior Full-Stack master CV, keeping the same filename so the link never changes.
+The CV button opens `public/cv/Serhii_Lyzun_Senior_Full_Stack_Engineer.pdf` in a new tab. To update it, replace that file with the new PDF, keeping the same filename so the link never changes.

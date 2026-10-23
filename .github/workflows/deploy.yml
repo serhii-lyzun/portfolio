@@ -34,7 +34,7 @@ jobs:
       - run: npm run format:check
       - run: npm run test
       - run: npm run build
-      # Bundle budgets from the plan (§ 4.4): initial JS ≤ 150 KB, 3D chunk ≤ 350 KB gzipped
+      # Bundle budgets: initial JS ≤ 150 KB, 3D chunk ≤ 350 KB gzipped
       - run: npm run size
 
       # Real-browser smoke tests against the production build: Chrome, Firefox and Safari's engine
@@ -52,7 +52,7 @@ jobs:
         with:
           path: dist
 
-  # Lighthouse (mobile): reports scores against the plan's targets. Kept out of the deploy path
+  # Lighthouse (mobile): reports scores against the targets in lighthouserc.json. Kept out of the deploy path
   # because scores on shared CI runners vary from run to run.
   lighthouse:
     runs-on: ubuntu-latest

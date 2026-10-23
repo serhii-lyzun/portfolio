@@ -21,7 +21,7 @@ const SEGMENTS = 32
 const PACKETS = 3
 
 /**
- * A light filament between two nodes with data packets flowing along it (plan § 2).
+ * A light filament between two nodes with data packets flowing along it.
  * Gently curved, brightens and speeds up while one of its ends is hovered.
  */
 export function Filament({ edge }: { edge: Edge }) {

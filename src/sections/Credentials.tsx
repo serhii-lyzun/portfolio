@@ -1,4 +1,5 @@
 import { Award } from 'lucide-react'
+import { SectionLink } from '@/components/SectionLink'
 import { credentials } from '@/content/profile'
 
 export function Credentials() {
@@ -8,7 +9,7 @@ export function Credentials() {
         id="credentials"
         className="text-xs font-semibold tracking-wider text-ink-muted uppercase"
       >
-        Courses &amp; certifications
+        <SectionLink id="credentials">Courses &amp; certifications</SectionLink>
       </h2>
       <ul className="mt-4 grid gap-3 sm:grid-cols-2">
         {credentials.map((c) => (

@@ -1,6 +1,6 @@
 import { useSyncExternalStore } from 'react'
 
-// Gate for the WebGL scene (plan § 4.4). Device tiers inside the scene (bloom, resolution) are
+// Gate for the WebGL scene. Device tiers inside the scene (bloom, resolution) are
 // handled by Experience; this decides whether 3D runs at all.
 const QUERY = '(min-width: 768px) and (prefers-reduced-motion: no-preference) and (pointer: fine)'
 

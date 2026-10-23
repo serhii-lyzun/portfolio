@@ -5,7 +5,7 @@ import { cn } from '@/lib/utils'
 type Props = { diagram: DiagramMedia; color: string; className?: string }
 
 /**
- * Animated architecture diagram for cases without screenshots (plan § 3).
+ * Animated architecture diagram for cases without screenshots.
  * Horizontal when its container is ≥ 42rem wide, vertical otherwise (cards, phones).
  * Dashes flow along each edge to show direction.
  */

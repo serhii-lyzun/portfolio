@@ -6,7 +6,7 @@ import { DiagramView } from '../DiagramView'
 import { caseIcons, linkIcons } from '../iconMaps'
 import { LinkButton } from '../LinkButton'
 
-/** Plan § 3: screenshots → card stack + lightbox; no screenshots → animated diagram. */
+/** Screenshots → card stack + lightbox; no screenshots → animated diagram. */
 export function CaseMedia({
   item,
   sizes,
@@ -31,7 +31,7 @@ export function CaseMedia({
   )
 }
 
-/** Plan § 3: every live link is a pill with its domain, opening in a new tab. */
+/** every live link is a pill with its domain, opening in a new tab. */
 export function CaseLinks({ item, className }: { item: CaseStudy; className?: string }) {
   if (item.links.length === 0) return null
   return (

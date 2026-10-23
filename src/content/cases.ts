@@ -1,5 +1,4 @@
-// Source: home-work-lesson-29.md (STAR cases) + how-work-lesson-30.md (Excel Add-in deep-dive).
-// Commercial projects only (plan D7). Order = constellation tour order (featured first).
+// Commercial projects only. Order = constellation tour order (featured first).
 import excelMarketplace from '@/assets/cases/excel-marketplace.png?picture'
 import excelSheet from '@/assets/cases/excel-sheet.png?picture'
 import mapSdkDocs from '@/assets/cases/map-sdk-docs.png?picture'
@@ -318,7 +317,7 @@ export const cases: CaseStudy[] = [
       { value: '~70%', label: 'of UI from the component library' },
       { value: '80%+', label: 'test coverage' },
     ],
-    // Separate, fogged cluster: different client (plan § 2)
+    // Separate, fogged cluster: different client
     node: {
       color: '#94a3b8',
       size: 0.9,

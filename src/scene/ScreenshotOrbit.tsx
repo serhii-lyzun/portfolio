@@ -14,7 +14,7 @@ const CARD_WIDTH = 2.5
 
 /**
  * The focused case's screenshots float out of its crystal as glass cards and orbit it slowly
- * (plan § 3). Hover brings a card forward; click opens the fullscreen lightbox.
+ *. Hover brings a card forward; click opens the fullscreen lightbox.
  */
 export function ScreenshotOrbit({ item }: { item: CaseStudy }) {
   const shots = useMemo(

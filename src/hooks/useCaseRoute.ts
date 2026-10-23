@@ -12,7 +12,7 @@ const readSlug = () =>
     : null
 
 /**
- * Case deep-links on GitHub Pages (no server rewrites, so hash routing; plan § 4.1).
+ * Case deep-links on GitHub Pages (no server rewrites, so hash routing).
  * Plain section anchors like `#cases` are left alone.
  */
 export function useCaseRoute() {

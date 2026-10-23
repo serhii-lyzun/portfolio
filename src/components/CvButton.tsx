@@ -9,7 +9,7 @@ type Props = {
   magnetic?: boolean
 }
 
-/** Opens the Senior Full-Stack CV PDF in a new tab with the browser's PDF preview (plan § 2.3). */
+/** Opens the Senior Full-Stack CV PDF in a new tab with the browser's PDF preview. */
 export function CvButton({ variant = 'outline', className, label = 'CV', magnetic }: Props) {
   return (
     <LinkButton

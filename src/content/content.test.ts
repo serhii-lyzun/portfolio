@@ -1,4 +1,4 @@
-// Guards the Lesson 29 portfolio rules and data integrity, so content edits can't break the site.
+// Guards the portfolio content rules and data integrity, so content edits can't break the site.
 import { existsSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import { describe, expect, it } from 'vitest'
@@ -7,11 +7,12 @@ import { CORE_ID, coreConnectedCases, ecosystem } from './ecosystem'
 import { leadership } from './leadership'
 import { CV_URL, profile } from './profile'
 import { SITE_URL, structuredData, structuredDataTag } from './structuredData'
+import { testimonials } from './testimonials'
 
 const publicDir = fileURLToPath(new URL('../../public/', import.meta.url))
 
 describe('profile', () => {
-  it('has the Lesson 29 must-haves: name, headline, domain, contacts, CV', () => {
+  it('has the must-haves: name, headline, domain, contacts, CV', () => {
     expect(profile.name).toBe('Serhii Lyzun')
     expect(profile.headline).toBe('Senior Full-Stack Engineer (React / Node.js)')
     expect(profile.domain).not.toBe('')
@@ -54,7 +55,7 @@ describe('cases', () => {
     expect(star.result.length).toBeGreaterThan(0)
   })
 
-  it.each(cases)('$slug has a link and/or a visual (Lesson 29)', ({ links, media }) => {
+  it.each(cases)('$slug has a link and/or a visual', ({ links, media }) => {
     expect(links.length + media.length).toBeGreaterThan(0)
   })
 
@@ -111,6 +112,21 @@ describe('ecosystem', () => {
 describe('leadership', () => {
   it('backs every story with proof', () => {
     for (const s of leadership) expect(s.proof).not.toBe('')
+  })
+})
+
+describe('testimonials', () => {
+  it('names who said it, how they worked with Serhii and when', () => {
+    for (const t of testimonials) {
+      expect(t.quote.length, t.name).toBeGreaterThan(0)
+      expect(
+        t.quote.every((p) => p.trim().length > 0),
+        t.name,
+      ).toBe(true)
+      expect(t.role && t.relation, t.name).toBeTruthy()
+      if (t.highlight) expect(t.quote.join(' '), t.name).toContain(t.highlight)
+      expect(t.date, t.name).toMatch(/^\d{4}-\d{2}-\d{2}$/)
+    }
   })
 })
 

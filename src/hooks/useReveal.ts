@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 
 /**
- * Fade-up on first scroll into view (plan M6). The hidden state only applies with motion allowed
+ * Fade-up on first scroll into view. The hidden state only applies with motion allowed
  * (see `.reveal` in index.css), so reduced-motion users and no-JS readers always see content.
  */
 export function useReveal<T extends HTMLElement>() {

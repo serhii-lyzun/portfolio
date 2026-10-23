@@ -1,5 +1,5 @@
 /**
- * Label for the custom cursor pill (plan § 2.1), set by the 3D scene while a crystal or a
+ * Label for the custom cursor pill, set by the 3D scene while a crystal or a
  * screenshot card is hovered. DOM targets are detected by the cursor itself.
  */
 let label: string | null = null

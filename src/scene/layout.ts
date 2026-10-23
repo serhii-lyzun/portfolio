@@ -3,7 +3,7 @@ import { getCase } from '@/content/cases'
 import { CORE_ID, coreConnectedCases, ecosystem } from '@/content/ecosystem'
 import type { CaseStudy } from '@/content/types'
 
-// Scene layout for the constellation (plan § 2). Everything is in the tilt group's local space.
+// Scene layout for the constellation. Everything is in the tilt group's local space.
 
 export const CORE_COLOR = '#3fe0e8'
 

@@ -1,16 +1,21 @@
-import type { CSSProperties } from 'react'
+import { Fragment, type CSSProperties } from 'react'
 import { ArrowDown, MapPin } from 'lucide-react'
 import { CvButton } from '@/components/CvButton'
 import { Picture } from '@/components/Picture'
 import { profile } from '@/content/profile'
 
-/** Entrance timing: letters of the name first, then each following line (plan M6). */
+/** Entrance timing: letters of the name first, then each following line. */
 const LETTER_MS = 35
 const nameDone = profile.name.length * LETTER_MS
+/** Words of the name with the index of their first letter (keeps one continuous letter stagger) */
+const nameWords = profile.name.split(' ').map((word, i, words) => ({
+  word,
+  start: words.slice(0, i).join(' ').length + (i > 0 ? 1 : 0),
+}))
 const enter = (step: number) => ({ animationDelay: `${nameDone + step * 120}ms` }) as CSSProperties
 const ENTER = 'motion-safe:animate-[fade-up_0.8s_cubic-bezier(0.2,0.7,0.2,1)_both]'
 
-/** Lesson 29 must-haves above the fold: name, profession + domain, contacts/CV. */
+/** Above the fold: name, profession + domain, contacts and CV. */
 export function Hero() {
   return (
     <section
@@ -30,16 +35,23 @@ export function Hero() {
           aria-label={profile.name}
           className="mt-4 font-display text-5xl leading-[1.05] font-bold sm:text-7xl"
         >
-          {/* Kinetic type: each letter rises in; the accessible name is the aria-label */}
-          {[...profile.name].map((char, i) => (
-            <span
-              key={i}
-              aria-hidden
-              className="inline-block whitespace-pre motion-safe:animate-[rise_0.9s_cubic-bezier(0.2,0.7,0.2,1)_both]"
-              style={{ animationDelay: `${i * LETTER_MS}ms` }}
-            >
-              {char}
-            </span>
+          {/* Kinetic type: each letter rises in; the accessible name is the aria-label. Letters are
+              grouped per word so a line can only break between words, never inside one. */}
+          {nameWords.map(({ word, start }, w) => (
+            <Fragment key={word}>
+              {w > 0 && ' '}
+              <span aria-hidden className="inline-block whitespace-nowrap">
+                {[...word].map((char, i) => (
+                  <span
+                    key={i}
+                    className="inline-block motion-safe:animate-[rise_0.9s_cubic-bezier(0.2,0.7,0.2,1)_both]"
+                    style={{ animationDelay: `${(start + i) * LETTER_MS}ms` }}
+                  >
+                    {char}
+                  </span>
+                ))}
+              </span>
+            </Fragment>
           ))}
         </h1>
         <p className={`mt-4 font-display text-xl text-coral sm:text-2xl ${ENTER}`} style={enter(0)}>
@@ -92,7 +104,7 @@ export function Hero() {
         style={{ animationDelay: '150ms', animationDuration: '1.4s' }}
       >
         <div aria-hidden className="absolute inset-[10%] rounded-full bg-coral/20 blur-3xl" />
-        {/* The studio photo's black backdrop melts into the page (plan § 4.6) */}
+        {/* The studio photo's black backdrop melts into the page */}
         <Picture
           picture={profile.photo}
           alt={profile.photoAlt}

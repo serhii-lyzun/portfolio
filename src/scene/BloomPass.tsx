@@ -4,7 +4,7 @@ import { BloomEffect, EffectComposer, EffectPass, RenderPass } from 'postprocess
 import { HalfFloatType } from 'three'
 
 /**
- * Soft glow on the brightest parts only: core, focused crystal, packets (plan § 4.6).
+ * Soft glow on the brightest parts only: core, focused crystal, packets.
  * Uses `postprocessing` directly: the React wrapper package pulls in unused effects (e.g. N8AO).
  * Mounted on the high device tier only; while mounted it takes over rendering.
  */

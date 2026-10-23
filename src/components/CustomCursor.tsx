@@ -17,7 +17,7 @@ const useFancyPointer = () =>
     () => false,
   )
 
-/** Cursor label for a page element (plan § 2.1): what a click will do. */
+/** Cursor label for a page element: what a click will do. */
 function labelFor(target: Element | null): string | null {
   const el = target?.closest('[data-cursor], a, button, [role="button"]')
   if (!el) return null
@@ -30,7 +30,7 @@ function labelFor(target: Element | null): string | null {
 }
 
 /**
- * Custom cursor (plan § 2.1): a ring that trails the pointer and morphs into a pill naming the
+ * Custom cursor: a ring that trails the pointer and morphs into a pill naming the
  * action ("Open case", "Open ↗", "Zoom"), plus a short particle trail. Also drives the magnetic
  * pull of `[data-magnetic]` buttons. The native cursor stays visible. Mouse + motion only.
  */

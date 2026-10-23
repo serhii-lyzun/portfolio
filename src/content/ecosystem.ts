@@ -1,5 +1,5 @@
-// Context satellites of the constellation (plan § 2): the shared API core and the services/channels
-// around it that are not cases themselves. Source: how-work-lesson-28.md ecosystem diagram.
+// Context satellites of the constellation: the shared API core and the services/channels
+// around it that are not cases themselves.
 import type { CaseSlug, EcosystemNode } from './types'
 
 export const CORE_ID = 'api'

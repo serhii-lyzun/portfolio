@@ -15,7 +15,7 @@ import { SatelliteNode } from './SatelliteNode'
 import { pointerAtDepth, REACH, SceneContext, type SceneState } from './SceneContext'
 import { ScreenshotOrbit } from './ScreenshotOrbit'
 
-/** Max tilt toward the cursor in radians (≈ 8°, plan § 8: keep it calm) */
+/** Max tilt toward the cursor in radians (≈ 8°: keep it calm) */
 const TILT_Y = 0.14
 const TILT_X = 0.09
 /** Horizontal centre of the constellation as a share of the visible width */
@@ -23,7 +23,7 @@ const HERO_X = 0.215 // on the portrait (hero right column)
 const TOUR_X = 0.24 // in the empty right column of the case tour
 /** Zoom on the active case during the tour, relative to the overview */
 const FOCUS_ZOOM = 1.75
-/** Idle highlight (plan § 2.1): start after this long without pointer movement, then step */
+/** Idle highlight: start after this long without pointer movement, then step */
 const IDLE_MS = 4000
 const IDLE_STEP_MS = 2600
 
@@ -67,7 +67,7 @@ export function Constellation({ pointerActive }: Props) {
     const width = state.viewport.width
     const overview = Math.min(0.62, width / 25)
 
-    // Rig: where the constellation sits and how close we are ("camera" fly-to, plan § 2.1)
+    // Rig: where the constellation sits and how close we are ("camera" fly-to)
     const focusNode = mode === 'cases' && active ? live.get(active) : undefined
     let scale = overview
     if (mode === 'hero') {
@@ -156,7 +156,7 @@ export function Constellation({ pointerActive }: Props) {
           ))}
           <PointerLine />
 
-          {/* Media of the case in focus during the tour (plan § 3) */}
+          {/* Media of the case in focus during the tour */}
           {tourCase && (
             <Suspense fallback={null}>
               <ScreenshotOrbit key={tourCase.slug} item={tourCase} />

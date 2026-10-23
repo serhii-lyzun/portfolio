@@ -15,7 +15,7 @@ type Props = {
   children: ReactNode
   icon?: ReactNode
   variant?: Variant
-  /** External links open in a new tab and show ↗ (plan § 4.5) */
+  /** External links open in a new tab and show ↗ */
   external?: boolean
   /** Small grey text after the label, e.g. the link's domain */
   hint?: string

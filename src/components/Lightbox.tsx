@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { ChevronLeft, ChevronRight, ZoomIn, ZoomOut } from 'lucide-react'
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from '@/components/ui/dialog'
 import type { ScreenshotMedia } from '@/content/types'
@@ -12,17 +12,29 @@ type Props = {
   title: string
 }
 
-/** Fullscreen screenshot viewer: arrows / ← → to browse, zoom to see real size, Esc to close. */
+/** How the current screenshot enters: rises in on open, swings in from the side when browsing */
+type Entry = 'open' | 'next' | 'prev'
+
+/**
+ * Fullscreen screenshot viewer: arrows / ← → / swipe / thumbnails to browse, zoom to see real
+ * size, Esc to close.
+ */
 export function Lightbox({ images, index, onIndexChange, title }: Props) {
   const [zoomed, setZoomed] = useState(false)
+  const [entry, setEntry] = useState<Entry>('open')
+  const swipeStart = useRef<number | null>(null)
   const open = index !== null
   const current = open ? images[index] : undefined
   const many = images.length > 1
 
+  const show = (next: number, direction: Entry) => {
+    setZoomed(false)
+    setEntry(direction)
+    onIndexChange(next)
+  }
   const go = (step: number) => {
     if (index === null) return
-    setZoomed(false)
-    onIndexChange((index + step + images.length) % images.length)
+    show((index + step + images.length) % images.length, step > 0 ? 'next' : 'prev')
   }
 
   useEffect(() => {
@@ -41,6 +53,7 @@ export function Lightbox({ images, index, onIndexChange, title }: Props) {
       onOpenChange={(next) => {
         if (!next) {
           setZoomed(false)
+          setEntry('open')
           onIndexChange(null)
         }
       }}
@@ -73,21 +86,69 @@ export function Lightbox({ images, index, onIndexChange, title }: Props) {
         {current && (
           <div
             className={cn(
-              'relative min-h-0 flex-1 rounded-lg bg-night-900',
-              zoomed ? 'overflow-auto' : 'flex items-center justify-center overflow-hidden',
+              'relative min-h-0 flex-1 rounded-lg bg-night-900 perspective-[1400px]',
+              zoomed ? 'overflow-auto' : 'overflow-hidden',
             )}
+            onPointerDown={(e) => {
+              if (e.pointerType !== 'mouse' && !zoomed) swipeStart.current = e.clientX
+            }}
+            onPointerUp={(e) => {
+              if (swipeStart.current === null) return
+              const dx = e.clientX - swipeStart.current
+              swipeStart.current = null
+              if (many && Math.abs(dx) > 50) go(dx < 0 ? 1 : -1)
+            }}
           >
-            <Picture
-              picture={current.picture}
-              alt={current.alt}
-              sizes="96vw"
-              className={cn(!zoomed && 'contents')}
-              imgClassName={cn(
-                'rounded-md',
-                zoomed ? 'max-w-none' : 'max-h-full max-w-full object-contain',
+            {/* Keyed by index: every screenshot mounts fresh and plays its entry animation */}
+            <div
+              key={index}
+              className={cn(
+                `shot-${entry}`,
+                zoomed ? 'w-max' : 'flex size-full items-center justify-center p-2 sm:p-4',
               )}
-            />
+            >
+              <Picture
+                picture={current.picture}
+                alt={current.alt}
+                sizes="96vw"
+                className={cn(!zoomed && 'contents')}
+                imgClassName={cn(
+                  'rounded-md shadow-[0_20px_80px_-20px_rgb(63_224_232/0.35)]',
+                  zoomed ? 'max-w-none' : 'max-h-full max-w-full object-contain',
+                )}
+              />
+            </div>
+            {!zoomed && <span aria-hidden key={`shine-${index}`} className="shot-shine" />}
           </div>
+        )}
+
+        {many && (
+          <ul className="flex justify-center gap-2" aria-label="Screenshots">
+            {images.map((image, i) => (
+              <li key={i}>
+                <button
+                  type="button"
+                  onClick={() => i !== index && show(i, i > (index ?? 0) ? 'next' : 'prev')}
+                  aria-label={`Show screenshot ${i + 1}`}
+                  aria-current={i === index}
+                  className={cn(
+                    'block h-12 w-20 overflow-hidden rounded-md border transition-all duration-300 sm:h-14 sm:w-24',
+                    i === index
+                      ? 'scale-105 border-cyan opacity-100 shadow-[0_0_20px_rgb(63_224_232/0.35)]'
+                      : 'border-ink/15 opacity-50 hover:opacity-90',
+                  )}
+                >
+                  <Picture
+                    picture={image.picture}
+                    alt=""
+                    sizes="96px"
+                    className="contents"
+                    imgClassName="size-full object-cover object-top"
+                  />
+                </button>
+              </li>
+            ))}
+          </ul>
         )}
 
         <div className="flex items-center gap-3">

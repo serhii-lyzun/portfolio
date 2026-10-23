@@ -23,7 +23,7 @@ type Props = {
 }
 
 /**
- * Device tiers (plan § 4.4). High: bloom + up to 1.75× pixel ratio. Mid: no bloom, ≤ 1.25×.
+ * Device tiers. High: bloom + up to 1.75× pixel ratio. Mid: no bloom, ≤ 1.25×.
  * If the scene still can't keep up, the site falls back to the 2D layout (`disable3D`).
  */
 type Tier = 'high' | 'mid'
@@ -39,7 +39,7 @@ function bloomCapable() {
 const STEP_UP_MS = 2500
 
 /**
- * The 3D constellation canvas (lazy-loaded chunk, plan § 4.4). Decorative: all of its
+ * The 3D constellation canvas (lazy-loaded chunk). Decorative: all of its
  * information is also on the page as HTML, so the canvas is hidden from assistive tech.
  */
 export default function Experience({

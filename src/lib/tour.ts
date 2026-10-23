@@ -2,7 +2,7 @@ import { useSyncExternalStore } from 'react'
 import type { CaseSlug } from '@/content/types'
 
 /**
- * Shared state between the page and the 3D scene (plan § 2.1):
+ * Shared state between the page and the 3D scene:
  * - `mode`: where the constellation is shown: behind the hero, beside the case tour, or hidden
  * - `active`: the case whose card is in the middle of the screen during the tour
  * - `enabled`: the desktop 3D tour layout is on (false on phones / no WebGL / reduced motion)

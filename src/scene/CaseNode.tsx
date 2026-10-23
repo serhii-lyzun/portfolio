@@ -23,7 +23,7 @@ import { pointerAtDepth, REACH, useScene } from './SceneContext'
 const PULL_STRENGTH = 0.35
 
 /**
- * A floating crystal for one case (plan § 2.1): orbits the core, glows and is pulled toward the
+ * A floating crystal for one case: orbits the core, glows and is pulled toward the
  * cursor when near, shows its headline metric on focus. Click: behind the hero it scrolls to the
  * case in the tour; in the tour it opens the full case.
  */
