@@ -1,11 +1,20 @@
 import { useEffect, useRef, useState, type RefObject } from 'react'
 import { PerformanceMonitor, Stars } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
+import { setConsoleFunction } from 'three'
 import { disable3D } from '@/hooks/useCan3D'
 import { BloomPass } from './BloomPass'
 import { Constellation } from './Constellation'
 import { LabelPortalContext } from './LabelPortal'
 import { StudioEnvironment } from './StudioEnvironment'
+
+// R3F 9 still drives its frame loop with THREE.Clock, which three r183 deprecated in favour of
+// THREE.Timer, so every page load logs a deprecation notice we can't act on. Drop only that
+// notice and forward everything else to the console unchanged.
+setConsoleFunction((type, message, ...params) => {
+  if (type === 'warn' && String(message).includes('Clock: This module has been deprecated')) return
+  console[type](message, ...params)
+})
 
 type Props = {
   /**
@@ -52,6 +61,7 @@ export default function Experience({
   const [tier, setTier] = useState<Tier>('mid')
   const [declined, setDeclined] = useState(false)
   const declines = useRef(0)
+  const visible = usePageVisible()
 
   useEffect(() => {
     if (declined || !bloomCapable()) return
@@ -77,19 +87,23 @@ export default function Experience({
         onReady?.()
       }}
     >
-      {/* Measures real frame rate; steps the tier down when it stays low (needs ~3 s of data) */}
-      <PerformanceMonitor
-        bounds={(refreshRate) => (refreshRate > 90 ? [50, 90] : [40, 60])}
-        flipflops={3}
-        onDecline={() => {
-          // 1st slowdown: drop bloom / resolution (or stay on mid). 2nd: give up on 3D.
-          declines.current += 1
-          setDeclined(true)
-          setTier('mid')
-          if (declines.current >= 2) disable3D('performance')
-        }}
-        onFallback={() => disable3D('performance')}
-      />
+      {/* Measures real frame rate; steps the tier down when it stays low (needs ~3 s of data).
+          Only declines count: drei also counts every smooth stretch as a "flip-flop", so its
+          own fallback would switch a fast machine to 2D after ~10 s. The monitor only runs while
+          the scene renders and starts fresh when rendering resumes (scrolled back, tab shown
+          again), so the pause itself is never measured as a slow frame. */}
+      {running && visible && (
+        <PerformanceMonitor
+          bounds={(refreshRate) => (refreshRate > 90 ? [50, 90] : [40, 60])}
+          onDecline={() => {
+            // 1st slowdown: drop bloom / resolution (or stay on mid). 2nd: give up on 3D.
+            declines.current += 1
+            setDeclined(true)
+            setTier('mid')
+            if (declines.current >= 2) disable3D('performance')
+          }}
+        />
+      )}
 
       {/* Opaque page-coloured background: post-processing output has no alpha */}
       <color attach="background" args={['#070b14']} />
@@ -106,4 +120,15 @@ export default function Experience({
       {tier === 'high' && <BloomPass />}
     </Canvas>
   )
+}
+
+/** False while the tab is in the background (the browser stops rendering frames then) */
+function usePageVisible() {
+  const [visible, setVisible] = useState(() => document.visibilityState === 'visible')
+  useEffect(() => {
+    const onChange = () => setVisible(document.visibilityState === 'visible')
+    document.addEventListener('visibilitychange', onChange)
+    return () => document.removeEventListener('visibilitychange', onChange)
+  }, [])
+  return visible
 }
