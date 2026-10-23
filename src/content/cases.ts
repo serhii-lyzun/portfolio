@@ -100,7 +100,7 @@ export const cases: CaseStudy[] = [
     node: {
       color: '#ff5a4e',
       size: 1.35,
-      orbit: { radius: 4.2, speed: 0.05, phase: 0, tilt: 0.18 },
+      orbit: { radius: 4.7, speed: 0.22, phase: 0.3, tilt: 0.55 },
     },
   },
   {
@@ -148,7 +148,7 @@ export const cases: CaseStudy[] = [
     node: {
       color: '#a78bfa',
       size: 1,
-      orbit: { radius: 5.4, speed: 0.04, phase: 1.25, tilt: -0.22 },
+      orbit: { radius: 4.7, speed: 0.19, phase: 2.45, tilt: 0.55 },
     },
   },
   {
@@ -200,7 +200,7 @@ export const cases: CaseStudy[] = [
     node: {
       color: '#34d399',
       size: 1,
-      orbit: { radius: 4.8, speed: 0.045, phase: 2.5, tilt: 0.3 },
+      orbit: { radius: 4.7, speed: 0.24, phase: 3.8, tilt: 0.55 },
     },
   },
   {
@@ -258,7 +258,7 @@ export const cases: CaseStudy[] = [
     node: {
       color: '#fbbf24',
       size: 1,
-      orbit: { radius: 5, speed: 0.035, phase: 3.75, tilt: -0.12 },
+      orbit: { radius: 4.6, speed: 0.2, phase: 5.45, tilt: 0.55 },
     },
   },
   {
@@ -322,7 +322,8 @@ export const cases: CaseStudy[] = [
     node: {
       color: '#94a3b8',
       size: 0.9,
-      orbit: { radius: 7.2, speed: 0.02, phase: 5, tilt: 0.05 },
+      orbit: { radius: 0.45, speed: 0.3, phase: 0, tilt: 0.6 },
+      anchor: [4.6, -3.3, -1.2],
     },
   },
 ]

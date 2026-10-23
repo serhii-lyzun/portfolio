@@ -50,73 +50,8 @@ export function Ecosystem() {
         reuses the same routing rules, so all products give the same answer.
       </SectionHeading>
 
-      {/* Desktop / tablet: the map */}
-      <div className="relative hidden aspect-[16/9] rounded-3xl border border-ink/10 bg-night-900/60 md:block">
-        <svg
-          className="absolute inset-0 h-full w-full"
-          viewBox="0 0 100 100"
-          preserveAspectRatio="none"
-          aria-hidden
-        >
-          {edges.map(({ from, to, color }) => {
-            const [x1, y1] = POSITIONS[from]
-            const [x2, y2] = POSITIONS[to]
-            return (
-              <g key={`${from}-${to}`}>
-                <line
-                  x1={x1}
-                  y1={y1}
-                  x2={x2}
-                  y2={y2}
-                  stroke={color}
-                  strokeOpacity={0.25}
-                  strokeWidth={1.5}
-                  vectorEffect="non-scaling-stroke"
-                />
-                <line
-                  x1={x1}
-                  y1={y1}
-                  x2={x2}
-                  y2={y2}
-                  stroke={color}
-                  strokeWidth={1.5}
-                  strokeDasharray="2 14"
-                  strokeLinecap="round"
-                  vectorEffect="non-scaling-stroke"
-                  className="animate-[flow_1.6s_linear_infinite] motion-reduce:animate-none"
-                />
-              </g>
-            )
-          })}
-        </svg>
-
-        {/* NDA case: separate client, drawn as its own fogged cluster */}
-        <div
-          aria-hidden
-          className="absolute top-1/2 left-[89%] size-44 -translate-1/2 rounded-full border border-dashed border-ink/20 bg-ink/[0.02]"
-        />
-
-        <ul aria-label="Platform map">
-          {ecosystem.map((node) => (
-            <MapNode key={node.id} id={node.id} label={node.label} core={node.kind === 'core'} />
-          ))}
-          {cases.map((item) => (
-            <MapNode
-              key={item.slug}
-              id={item.slug}
-              label={item.title}
-              slug={item.slug}
-              color={item.node.color}
-              metric={item.headlineMetric}
-            />
-          ))}
-        </ul>
-        {nda && (
-          <p className="absolute top-[64%] left-[89%] w-40 -translate-x-1/2 text-center text-[11px] text-ink-muted">
-            Different client, separate system
-          </p>
-        )}
-      </div>
+      {/* Desktop / tablet: the map (the interactive 3D version floats behind the hero) */}
+      <Map2D />
 
       {/* Phones: the same information as a list */}
       <div className="rounded-3xl border border-ink/10 bg-night-900/60 p-5 md:hidden">
@@ -208,5 +143,78 @@ function CaseRow({ slug }: { slug: CaseSlug }) {
         </span>
       </a>
     </li>
+  )
+}
+
+/** 2D map of the platform: one shared API, its sub-systems, the separate NDA project. */
+function Map2D() {
+  const nda = cases.find((c) => c.nda)
+  return (
+    <div className="relative hidden aspect-[16/9] rounded-3xl border border-ink/10 bg-night-900/60 md:block">
+      <svg
+        className="absolute inset-0 h-full w-full"
+        viewBox="0 0 100 100"
+        preserveAspectRatio="none"
+        aria-hidden
+      >
+        {edges.map(({ from, to, color }) => {
+          const [x1, y1] = POSITIONS[from]
+          const [x2, y2] = POSITIONS[to]
+          return (
+            <g key={`${from}-${to}`}>
+              <line
+                x1={x1}
+                y1={y1}
+                x2={x2}
+                y2={y2}
+                stroke={color}
+                strokeOpacity={0.25}
+                strokeWidth={1.5}
+                vectorEffect="non-scaling-stroke"
+              />
+              <line
+                x1={x1}
+                y1={y1}
+                x2={x2}
+                y2={y2}
+                stroke={color}
+                strokeWidth={1.5}
+                strokeDasharray="2 14"
+                strokeLinecap="round"
+                vectorEffect="non-scaling-stroke"
+                className="animate-[flow_1.6s_linear_infinite] motion-reduce:animate-none"
+              />
+            </g>
+          )
+        })}
+      </svg>
+
+      {/* NDA case: separate client, drawn as its own fogged cluster */}
+      <div
+        aria-hidden
+        className="absolute top-1/2 left-[89%] size-44 -translate-1/2 rounded-full border border-dashed border-ink/20 bg-ink/[0.02]"
+      />
+
+      <ul aria-label="Platform map">
+        {ecosystem.map((node) => (
+          <MapNode key={node.id} id={node.id} label={node.label} core={node.kind === 'core'} />
+        ))}
+        {cases.map((item) => (
+          <MapNode
+            key={item.slug}
+            id={item.slug}
+            label={item.title}
+            slug={item.slug}
+            color={item.node.color}
+            metric={item.headlineMetric}
+          />
+        ))}
+      </ul>
+      {nda && (
+        <p className="absolute top-[64%] left-[89%] w-40 -translate-x-1/2 text-center text-[11px] text-ink-muted">
+          Different client, separate system
+        </p>
+      )}
+    </div>
   )
 }

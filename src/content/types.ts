@@ -69,7 +69,12 @@ export type CaseStudy = {
   node: {
     color: string
     size: number
+    /**
+     * Place on a tilted ring around the API core (or around `anchor`, e.g. the NDA cluster):
+     * `phase` = home angle (rad), `tilt` = vertical squash, `speed` = sway frequency.
+     */
     orbit: { radius: number; speed: number; phase: number; tilt: number }
+    anchor?: [x: number, y: number, z: number]
   }
 }
 

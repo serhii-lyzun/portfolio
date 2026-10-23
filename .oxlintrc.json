@@ -9,6 +9,11 @@
     {
       "files": ["src/components/ui/**"],
       "rules": { "react/only-export-components": "off" }
+    },
+    {
+      // React Three Fiber mutates Three.js objects inside useFrame by design (no re-render per frame)
+      "files": ["src/scene/**"],
+      "rules": { "react/immutability": "off" }
     }
   ]
 }

@@ -57,8 +57,10 @@
     @apply border-border;
   }
 
+  /* Background lives on <html> only: a body background would paint over the fixed, negative
+     z-index backdrop layers (ambient glow, 3D constellation). */
   body {
-    @apply bg-night-950 font-sans text-ink antialiased;
+    @apply font-sans text-ink antialiased;
   }
 
   :focus-visible {
