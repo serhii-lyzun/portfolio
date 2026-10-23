@@ -1,15 +1,25 @@
-import { ArrowRight, Star } from 'lucide-react'
-import type { CaseStudy } from '@/content/types'
+import { ArrowRight, Images, Star } from 'lucide-react'
+import type { CaseStudy, ScreenshotMedia } from '@/content/types'
 import { caseHref } from '@/hooks/useCaseRoute'
+import { diagramText } from '@/lib/diagramLayout'
+import { lightbox } from '@/lib/lightbox'
 import { cn } from '@/lib/utils'
 import { CaseIcon, CaseLinks, CaseMedia, CaseMetrics, NdaBadge } from './CaseParts'
+
+type Props = {
+  item: CaseStudy
+  /** `tour`: desktop 3D tour card. Its media lives in the scene, so the card links to it instead. */
+  variant?: 'grid' | 'tour'
+}
 
 /**
  * Compact case for the page: what it is, the numbers, the results, the proof (links/visuals).
  * The full STAR story opens in the case sheet (`#/case/<slug>`).
  */
-export function CaseCard({ item }: { item: CaseStudy }) {
-  const featured = item.featured
+export function CaseCard({ item, variant = 'grid' }: Props) {
+  const tour = variant === 'tour'
+  const featured = item.featured && !tour
+  const screenshots = item.media.filter((m): m is ScreenshotMedia => m.kind === 'screenshot')
 
   return (
     <article
@@ -18,6 +28,8 @@ export function CaseCard({ item }: { item: CaseStudy }) {
       className={cn(
         'relative grid grid-cols-[minmax(0,1fr)] gap-8 overflow-hidden rounded-3xl border border-ink/10 bg-night-900/70 p-5 sm:p-8',
         featured && 'lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:items-center lg:p-10',
+        // Tour cards sit over the 3D scene: keep them readable
+        tour && 'bg-night-900/90 backdrop-blur-md',
       )}
     >
       <div
@@ -30,7 +42,7 @@ export function CaseCard({ item }: { item: CaseStudy }) {
         <header className="flex items-start gap-4">
           <CaseIcon item={item} />
           <div className="min-w-0">
-            {featured && (
+            {item.featured && (
               <p className="mb-1 inline-flex items-center gap-1.5 text-xs font-medium tracking-wider text-coral uppercase">
                 <Star className="size-3.5 fill-current" aria-hidden />
                 Featured case
@@ -79,15 +91,35 @@ export function CaseCard({ item }: { item: CaseStudy }) {
             <ArrowRight className="size-4" aria-hidden />
           </a>
           <CaseLinks item={item} className="contents" />
+          {tour && screenshots.length > 0 && (
+            <button
+              type="button"
+              onClick={() => lightbox.open(screenshots, 0, item.title)}
+              className="inline-flex min-h-11 items-center gap-2 rounded-full px-4 py-2.5 text-sm text-ink-muted transition-colors hover:text-cyan"
+            >
+              <Images className="size-4" aria-hidden />
+              Screenshots ({screenshots.length})
+            </button>
+          )}
         </div>
+        {tour &&
+          item.media.map((m, i) =>
+            m.kind === 'diagram' ? (
+              <p key={i} className="sr-only">
+                {m.caption}: {diagramText(m)}
+              </p>
+            ) : null,
+          )}
       </div>
 
-      <div className="relative">
-        <CaseMedia
-          item={item}
-          sizes={featured ? '(min-width: 1024px) 45vw, 90vw' : '(min-width: 768px) 40vw, 90vw'}
-        />
-      </div>
+      {!tour && (
+        <div className="relative">
+          <CaseMedia
+            item={item}
+            sizes={featured ? '(min-width: 1024px) 45vw, 90vw' : '(min-width: 768px) 40vw, 90vw'}
+          />
+        </div>
+      )}
     </article>
   )
 }

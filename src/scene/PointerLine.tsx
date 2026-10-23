@@ -3,9 +3,9 @@ import { useFrame } from '@react-three/fiber'
 import { BufferAttribute, BufferGeometry, Line, LineDashedMaterial, Vector3 } from 'three'
 import { pointerAtDepth, useScene } from './SceneContext'
 
-/** Thin dashed line from the cursor to the hovered case node: "pointing to the use case" (§ 2.1). */
+/** Thin dashed line from the cursor to the case it points at: "pointing to the use case" (§ 2.1). */
 export function PointerLine() {
-  const { live, pointer, focus: hovered } = useScene()
+  const { live, pointer, pointed } = useScene()
 
   const line = useMemo(() => {
     const geometry = new BufferGeometry()
@@ -28,7 +28,7 @@ export function PointerLine() {
   const cursor = useMemo(() => new Vector3(), [])
 
   useFrame(() => {
-    const node = hovered ? live.get(hovered) : undefined
+    const node = pointed ? live.get(pointed) : undefined
     const visible = !!node && pointer.active && !!pointerAtDepth(pointer.ray, node.z, cursor)
     line.visible = visible
     if (!visible || !node) return

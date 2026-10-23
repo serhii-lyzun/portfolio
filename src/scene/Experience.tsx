@@ -1,6 +1,6 @@
-import type { ReactNode, RefObject } from 'react'
+import type { RefObject } from 'react'
 import { Environment, Lightformer, Stars } from '@react-three/drei'
-import { Canvas, useThree } from '@react-three/fiber'
+import { Canvas } from '@react-three/fiber'
 import { Constellation } from './Constellation'
 import { LabelPortalContext } from './LabelPortal'
 
@@ -12,7 +12,7 @@ type Props = {
   eventSource: HTMLElement
   /** Pointer is over the page (tilt / pull / focus only then) */
   pointerActive: RefObject<boolean>
-  /** False while the hero is scrolled out of view: stop rendering */
+  /** False while neither the hero nor the case tour is on screen: stop rendering */
   running: boolean
   /** Layer for the HTML labels, inside the backdrop (see LabelPortal) */
   labelLayer: RefObject<HTMLElement>
@@ -66,25 +66,8 @@ export default function Experience({
 
       <Stars radius={40} depth={30} count={1200} factor={2.5} saturation={0} fade speed={0.4} />
       <LabelPortalContext.Provider value={labelLayer}>
-        <HeroPlacement>
-          <pointLight position={[0, 0, 0]} intensity={25} distance={12} color="#3fe0e8" />
-          <Constellation pointerActive={pointerActive} />
-        </HeroPlacement>
+        <Constellation pointerActive={pointerActive} />
       </LabelPortalContext.Provider>
     </Canvas>
-  )
-}
-
-/**
- * Centres the constellation on the hero portrait (right column) so the filaments pass behind
- * the photo (plan § 4.6), and scales it down on narrower windows so it stays clear of the text.
- */
-function HeroPlacement({ children }: { children: ReactNode }) {
-  const viewport = useThree((s) => s.viewport)
-  const scale = Math.min(0.62, viewport.width / 25)
-  return (
-    <group position={[viewport.width * 0.215, 0.1, 0]} scale={scale}>
-      {children}
-    </group>
   )
 }

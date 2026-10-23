@@ -2,7 +2,6 @@ import { ArrowDown, MapPin } from 'lucide-react'
 import { CvButton } from '@/components/CvButton'
 import { Picture } from '@/components/Picture'
 import { profile } from '@/content/profile'
-import { HeroBackdrop } from './HeroBackdrop'
 
 /** Lesson 29 must-haves above the fold: name, profession + domain, contacts/CV. */
 export function Hero() {
@@ -12,7 +11,6 @@ export function Hero() {
       aria-labelledby="hero-title"
       className="relative mx-auto grid min-h-svh max-w-6xl content-center items-center px-4 gap-6 pt-20 pb-16 sm:px-6 md:grid-cols-[1.25fr_1fr] md:gap-10 md:pt-16"
     >
-      <HeroBackdrop />
       <div className="relative z-10 order-2 md:order-1">
         <p className="font-display text-sm tracking-[0.3em] text-cyan uppercase">
           {profile.domain}

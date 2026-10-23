@@ -9,8 +9,10 @@ export type SceneState = {
   /** Node directly under the cursor (pointer events) */
   hovered: string | null
   setHovered: (id: string | null) => void
-  /** Node the scene points at: the hovered one, else the nearest case within reach of the cursor */
+  /** Node the scene highlights: hovered, nearest in reach, tour's active case or idle highlight */
   focus: string | null
+  /** Node the cursor itself points at (hovered or within reach): drives the pointer line */
+  pointed: string | null
 }
 
 /** Cursor-to-node distance (world units) at which a case reacts: pull, label, pointer line */

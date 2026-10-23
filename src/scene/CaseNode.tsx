@@ -11,9 +11,11 @@ import {
 } from 'three'
 import type { CaseStudy } from '@/content/types'
 import { caseHref } from '@/hooks/useCaseRoute'
+import { scrollToCase, tour, useTour } from '@/lib/tour'
 import { glowTexture } from './glowTexture'
 import { orbitPosition } from './layout'
 import { useLabelPortal } from './LabelPortal'
+import { overPageUi } from './overPageUi'
 import { pointerAtDepth, REACH, useScene } from './SceneContext'
 
 /** Max share of the distance a node travels toward the cursor */
@@ -21,7 +23,8 @@ const PULL_STRENGTH = 0.35
 
 /**
  * A floating crystal for one case (plan § 2.1): orbits the core, glows and is pulled toward the
- * cursor when near, shows its headline metric on hover, opens the case on click.
+ * cursor when near, shows its headline metric on focus. Click: behind the hero it scrolls to the
+ * case in the tour; in the tour it opens the full case.
  */
 export function CaseNode({ item }: { item: CaseStudy }) {
   const { live, pointer, focus, setHovered } = useScene()
@@ -43,6 +46,10 @@ export function CaseNode({ item }: { item: CaseStudy }) {
 
   const isHovered = focus === item.slug
   const dimmed = focus !== null && !isHovered
+  // The tour card on the left already names the active case; its floating label would only
+  // collide with the orbiting screenshots
+  const { mode, active } = useTour()
+  const labelHidden = mode === 'cases' && active === item.slug
   const size = item.node.size * 0.55
   const { color } = item.node
 
@@ -126,6 +133,9 @@ export function CaseNode({ item }: { item: CaseStudy }) {
         onClick={(e) => {
           e.stopPropagation()
           if (overPageUi(e.nativeEvent)) return
+          // Behind the hero: fly to the case in the scroll tour. In the tour: open the full case.
+          const { enabled, mode } = tour.get()
+          if (enabled && mode === 'hero' && scrollToCase(item.slug)) return
           window.location.hash = caseHref(item.slug)
         }}
       >
@@ -142,7 +152,7 @@ export function CaseNode({ item }: { item: CaseStudy }) {
       >
         <div
           className="pointer-events-none w-max text-center transition-opacity duration-300 select-none"
-          style={{ opacity: dimmed ? 0.35 : 1 }}
+          style={{ opacity: labelHidden ? 0 : dimmed ? (mode === 'cases' ? 0.15 : 0.35) : 1 }}
         >
           <p className="text-[13px] font-semibold text-ink [text-shadow:0_1px_8px_#070b14]">
             {item.nda && '🔒 '}
@@ -162,10 +172,4 @@ export function CaseNode({ item }: { item: CaseStudy }) {
       </Html>
     </group>
   )
-}
-
-/** The canvas sits behind the page: a click on hero text, links or the photo is not a node click. */
-function overPageUi(event: Event) {
-  const target = event.target as Element | null
-  return !!target?.closest('a, button, h1, p, li, picture')
 }
