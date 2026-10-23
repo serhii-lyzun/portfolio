@@ -1,12 +1,12 @@
 import { ArrowUpRight, FileText, Mail } from 'lucide-react'
+import { profile } from '@/content/profile'
 import { cn } from '@/lib/utils'
 
-// M1 placeholder: real content and the 3D constellation arrive in M2–M5 (see PORTFOLIO_SITE_PLAN.md)
-const CV_URL = `${import.meta.env.BASE_URL}cv/Serhii_Lyzun_Senior_Full_Stack_Engineer.pdf`
+// Placeholder until M3: real sections and the 3D constellation arrive in M3–M5 (see PORTFOLIO_SITE_PLAN.md)
 const CASES_URL = 'https://github.com/serhii-lyzun/portfolio/blob/main/home-work-lesson-29.md'
 
 const links = [
-  { label: 'CV', href: CV_URL, icon: FileText, primary: true },
+  { label: 'CV', href: profile.cvUrl, icon: FileText, primary: true },
   { label: 'LinkedIn', href: 'https://linkedin.com/in/serhii-lyzun', icon: ArrowUpRight },
   { label: 'GitHub', href: 'https://github.com/serhii-lyzun', icon: ArrowUpRight },
 ]
@@ -26,15 +26,11 @@ export default function App() {
       <section className="relative mx-auto w-full max-w-4xl">
         <p className="font-display text-sm tracking-[0.3em] text-cyan uppercase">Portfolio</p>
         <h1 className="mt-4 font-display text-5xl leading-tight font-bold sm:text-7xl">
-          Serhii Lyzun
+          {profile.name}
         </h1>
-        <p className="mt-3 font-display text-xl text-coral sm:text-2xl">
-          Senior Full-Stack Engineer (React / Node.js)
-        </p>
+        <p className="mt-3 font-display text-xl text-coral sm:text-2xl">{profile.headline}</p>
         <p className="mt-6 max-w-2xl text-lg text-ink-muted">
-          9+ years · 15+ launches · teams of 5–15 · domain expertise in logistics &amp; route
-          planning. I build and scale product ecosystems end to end: web apps, Node.js services, npm
-          SDKs, Office Add-ins and AI/MCP tools.
+          {[...profile.facts, profile.domain].join(' · ')}. {profile.summary}
         </p>
 
         <div className="mt-10 flex flex-wrap gap-3">
@@ -56,11 +52,11 @@ export default function App() {
             </a>
           ))}
           <a
-            href="mailto:serhii.lyzun@gmail.com"
+            href={`mailto:${profile.email}`}
             className="inline-flex items-center gap-2 rounded-full border border-ink/20 px-6 py-3 font-medium transition-colors hover:border-cyan hover:text-cyan"
           >
             <Mail className="size-4" aria-hidden />
-            serhii.lyzun@gmail.com
+            {profile.email}
           </a>
         </div>
 
