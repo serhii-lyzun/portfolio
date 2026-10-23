@@ -1,0 +1,31 @@
+@import 'tailwindcss';
+
+/* Design tokens: dark "night constellation" theme (plan § 4.6) */
+@theme {
+  --color-night-950: #070b14;
+  --color-night-900: #0c1222;
+  --color-night-800: #141c31;
+  --color-ink: #e8ecf4;
+  --color-ink-muted: #9aa5bb;
+  --color-coral: #ff5a4e;
+  --color-coral-soft: #ff8a7f;
+  --color-cyan: #3fe0e8;
+
+  --font-display: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    color-scheme: dark;
+    background-color: var(--color-night-950);
+  }
+
+  body {
+    @apply bg-night-950 font-sans text-ink antialiased;
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-cyan;
+  }
+}
