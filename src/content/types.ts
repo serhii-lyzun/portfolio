@@ -10,7 +10,12 @@ export type ScreenshotMedia = {
   kind: 'screenshot'
   picture: Picture
   alt: string
+  /** What this shows (short; also the label in the browser-window frame) */
   caption?: string
+  /** My part in what the screenshot shows */
+  contribution?: string
+  /** Why it mattered */
+  why?: string
 }
 
 export type DiagramMedia = {
@@ -42,6 +47,12 @@ export type CaseStudy = {
   tagline: string
   company: string
   role: string
+  /** My part in this case, separate from the team's result */
+  contribution: string
+  /** Who built it, e.g. "Me + 1 Senior Frontend Engineer" */
+  team: string
+  /** Short ownership tag for the ecosystem map and 3D labels, e.g. "Led · team of 2" */
+  ownership: string
   period: string
   stack: string[]
   nda?: boolean
@@ -79,11 +90,20 @@ export type CaseStudy = {
 }
 
 export type Metric = {
-  /** Numeric part animated by the count-up (e.g. 8 in "8+") */
-  value: number
+  /** Number animated by the count-up (e.g. 8 in "8+"), or a short text shown as is */
+  value: number | string
   prefix?: string
   suffix?: string
   label: string
+  /** Where the number comes from or how it is defined */
+  note?: string
+}
+
+export type MetricGroup = {
+  title: string
+  /** Shown next to the group title, e.g. "my estimates" */
+  qualifier?: string
+  metrics: Metric[]
 }
 
 export type ContactLink = {
@@ -105,13 +125,16 @@ export type Profile = {
   cvUrl: string
   photo: Picture
   photoAlt: string
-  metrics: Metric[]
+  /** Impact numbers, grouped: scope, business outcomes, engineering outcomes, delivery */
+  metrics: MetricGroup[]
 }
 
 export type LeadershipStory = {
   title: string
   story: string
   proof: string
+  /** How the proof was measured, when it is an estimate */
+  proofNote?: string
 }
 
 export type Credential = {
