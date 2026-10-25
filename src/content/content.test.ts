@@ -31,8 +31,22 @@ describe('profile', () => {
     expect(profile.photoAlt).not.toBe('')
   })
 
-  it('shows the 5 impact metrics', () => {
-    expect(profile.metrics).toHaveLength(5)
+  it('groups impact numbers into scope, business, engineering and a delivery example', () => {
+    expect(profile.metrics.map((g) => g.title)).toEqual([
+      'Scope',
+      'Business outcomes',
+      'Engineering outcomes',
+      'Delivery example',
+    ])
+  })
+
+  it('says where every outcome number comes from', () => {
+    const outcomes = profile.metrics.filter((g) => g.title.endsWith('outcomes'))
+    for (const m of outcomes.flatMap((g) => g.metrics)) expect(m.note, m.label).toBeTruthy()
+    // Estimates are labelled as estimates
+    expect(profile.metrics.find((g) => g.title === 'Engineering outcomes')?.qualifier).toBe(
+      'my estimates',
+    )
   })
 })
 
@@ -53,6 +67,21 @@ describe('cases', () => {
     expect(star.task).not.toBe('')
     expect(star.action.length).toBeGreaterThan(0)
     expect(star.result.length).toBeGreaterThan(0)
+  })
+
+  it.each(cases)('$slug separates my contribution from the team result', (c) => {
+    expect(c.contribution).not.toBe('')
+    expect(c.team).not.toBe('')
+    expect(c.ownership).not.toBe('')
+  })
+
+  it.each(cases)('$slug explains each screenshot: what it shows, my part, why it mattered', (c) => {
+    for (const m of c.media)
+      if (m.kind === 'screenshot') {
+        expect(m.caption, c.slug).toBeTruthy()
+        expect(m.contribution, c.slug).toBeTruthy()
+        expect(m.why, c.slug).toBeTruthy()
+      }
   })
 
   it.each(cases)('$slug has a link and/or a visual', ({ links, media }) => {

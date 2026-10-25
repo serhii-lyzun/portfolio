@@ -4,7 +4,14 @@ import { caseHref } from '@/hooks/useCaseRoute'
 import { diagramText } from '@/lib/diagramLayout'
 import { lightbox } from '@/lib/lightbox'
 import { cn } from '@/lib/utils'
-import { CaseIcon, CaseLinks, CaseMedia, CaseMetrics, NdaBadge } from './CaseParts'
+import {
+  CaseContribution,
+  CaseIcon,
+  CaseLinks,
+  CaseMedia,
+  CaseMetrics,
+  NdaBadge,
+} from './CaseParts'
 
 type Props = {
   item: CaseStudy
@@ -63,6 +70,7 @@ export function CaseCard({ item, variant = 'grid' }: Props) {
         </p>
         {item.nda && <NdaBadge note={item.ndaNote} />}
 
+        <CaseContribution item={item} />
         <CaseMetrics item={item} />
 
         <div>

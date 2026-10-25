@@ -57,6 +57,22 @@ export function CaseLinks({ item, className }: { item: CaseStudy; className?: st
   )
 }
 
+/** My part in the case, kept apart from the team's result */
+export function CaseContribution({ item, className }: { item: CaseStudy; className?: string }) {
+  return (
+    <div
+      className={cn('rounded-xl border-l-2 bg-night-950/40 py-3 pr-4 pl-4', className)}
+      style={{ borderColor: item.node.color }}
+    >
+      <p className="text-xs font-semibold tracking-wider text-ink-muted uppercase">
+        My contribution
+      </p>
+      <p className="mt-1 text-sm leading-relaxed">{item.contribution}</p>
+      <p className="mt-1 text-xs text-ink-muted">Team: {item.team}</p>
+    </div>
+  )
+}
+
 export function CaseMetrics({ item, className }: { item: CaseStudy; className?: string }) {
   return (
     <dl className={cn('grid grid-cols-2 gap-3 sm:grid-cols-3', className)}>

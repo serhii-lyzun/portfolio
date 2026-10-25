@@ -5,14 +5,15 @@ export const leadership: LeadershipStory[] = [
   {
     title: 'Small team, fast delivery',
     story:
-      'The Excel Add-in was built by a team of 2 (1 developer + 1 team lead). I owned the technical design, code reviews and the Marketplace release.',
+      'The Excel Add-in was built by a team of 2: a Senior Frontend Engineer and me as team lead, coding about half of my time. I owned the technical design, code reviews and the Marketplace release.',
     proof: 'MVP in 2 sprints, full feature in 4',
   },
   {
     title: 'Code-quality standards',
     story:
-      'I lead and mentor teams of 5–15 engineers and set code-quality standards through code reviews and technical guidance.',
+      'I lead and mentor teams of 1–5 engineers and set code-quality standards through code reviews and technical guidance.',
     proof: '+30% team productivity',
+    proofNote: 'My estimate: story points per sprint with me as team lead vs. periods without one',
   },
   {
     title: 'Stakeholders in the loop',
@@ -25,5 +26,6 @@ export const leadership: LeadershipStory[] = [
     story:
       'I introduced agentic engineering with Claude Code and Claude Skills/Agents as development tools.',
     proof: '+40% delivery speed',
+    proofNote: 'My estimate: comparable user stories, full cycle, with AI tooling vs. without',
   },
 ]

@@ -10,7 +10,15 @@ import {
 import { cases } from '@/content/cases'
 import type { CaseStudy } from '@/content/types'
 import { caseHref } from '@/hooks/useCaseRoute'
-import { CaseIcon, CaseLinks, CaseMedia, CaseMetrics, NdaBadge, StackChips } from './CaseParts'
+import {
+  CaseContribution,
+  CaseIcon,
+  CaseLinks,
+  CaseMedia,
+  CaseMetrics,
+  NdaBadge,
+  StackChips,
+} from './CaseParts'
 
 type Props = { item: CaseStudy | undefined; onClose: () => void }
 
@@ -71,6 +79,7 @@ function CaseDetail({ item }: { item: CaseStudy }) {
       </SheetHeader>
 
       <div className="flex flex-col gap-10 p-6 sm:p-8">
+        <CaseContribution item={item} />
         <CaseMetrics item={item} />
         <CaseMedia item={item} sizes="(min-width: 768px) 700px, 92vw" />
 

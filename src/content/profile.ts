@@ -10,8 +10,8 @@ export const profile: Profile = {
   headline: 'Senior Full-Stack Engineer (React / Node.js)',
   domain: 'Logistics & route planning',
   summary:
-    'I build and scale product ecosystems end to end: web apps, Node.js services, npm SDKs, Office Add-ins and AI/MCP tools. I also lead the teams that ship them.',
-  facts: ['9+ years', '15+ launches', 'Teams of 5–15'],
+    'I build web apps, Node.js services, npm SDKs, Office Add-ins and AI/MCP tools, and I lead the teams that ship them.',
+  facts: ['9+ years', '15+ products launched', 'Teams of 1–5'],
   location: 'Ukraine',
   availability: 'Open to Remote & Relocation (EU, USA)',
   email: 'serhii.lyzun@gmail.com',
@@ -25,20 +25,75 @@ export const profile: Profile = {
   photo,
   photoAlt: 'Portrait of Serhii Lyzun',
   metrics: [
-    { value: 8, suffix: '+', label: 'Sub-systems built for one platform' },
-    { value: 2, label: 'New major B2B customers via the Excel Add-in' },
-    { value: 5, prefix: '+', suffix: '%', label: 'New B2C customers per year via Stripe billing' },
     {
-      value: 30,
-      prefix: '+',
-      suffix: '%',
-      label: 'Team productivity after code-quality standards',
+      title: 'Scope',
+      metrics: [
+        {
+          value: 15,
+          suffix: '+',
+          label: 'Products launched',
+          note: 'Separate products, not releases or features',
+        },
+        { value: '1–5', label: 'People in the teams I lead', note: 'Team lead and mentor' },
+        {
+          value: 4,
+          label: 'MileMaker sub-systems are mine',
+          note: 'Of the platform’s 8+: 2 I led, 2 I built on my own',
+        },
+      ],
     },
     {
-      value: 40,
-      prefix: '+',
-      suffix: '%',
-      label: 'Delivery speed with Claude Code, Skills & Agents',
+      title: 'Business outcomes',
+      metrics: [
+        {
+          value: 2,
+          prefix: '+',
+          label: 'Major B2B customers the Excel Add-in helped land',
+          note: 'Confirmed by the client',
+        },
+        {
+          value: 5,
+          prefix: '+',
+          suffix: '%',
+          label: 'New B2C customers per year after Stripe billing',
+          note: 'Confirmed by the client',
+        },
+        {
+          value: 'Fewer hires',
+          label: 'Needed by the client thanks to the AI agent',
+          note: 'Confirmed by the client',
+        },
+      ],
+    },
+    {
+      title: 'Engineering outcomes',
+      qualifier: 'my estimates',
+      metrics: [
+        {
+          value: 30,
+          prefix: '+',
+          suffix: '%',
+          label: 'Team productivity',
+          note: 'Story points per sprint with me as team lead vs. periods without one',
+        },
+        {
+          value: 40,
+          prefix: '+',
+          suffix: '%',
+          label: 'Delivery speed with AI tooling',
+          note: 'Comparable user stories, full cycle, with Claude Code vs. without',
+        },
+      ],
+    },
+    {
+      title: 'Delivery example',
+      metrics: [
+        {
+          value: 2,
+          suffix: ' days',
+          label: 'Custom route-avoidance feature for the client',
+        },
+      ],
     },
   ],
 }

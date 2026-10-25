@@ -65,7 +65,7 @@ test('every case has a full case view reachable from the page', async ({ page })
   await links.nth(4).click()
   await expect(page.getByRole('dialog', { name: 'Logistics web platform' })).toBeVisible()
   await expect(
-    page.getByText('Client name, product and screenshots are under NDA.').last(),
+    page.getByText(/^Client name, product and screenshots are under NDA/).last(),
   ).toBeVisible()
 })
 

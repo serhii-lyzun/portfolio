@@ -47,7 +47,9 @@ export function Ecosystem() {
     <section aria-labelledby="ecosystem" className="mx-auto max-w-6xl px-4 py-24 sm:px-6 sm:py-32">
       <SectionHeading id="ecosystem" index="02" title="Ecosystem">
         One shared Node.js API behind 8+ sub-systems. Every new channel (Excel, SDK, AI tools)
-        reuses the same routing rules, so all products give the same answer.
+        reuses the same routing rules, so all products give the same answer. The coloured boxes are
+        my work and say what my part was; grey ones are the rest of the platform and external
+        services.
       </SectionHeading>
 
       {/* Desktop / tablet: the map (the interactive 3D version floats behind the hero) */}
@@ -84,6 +86,7 @@ function MapNode({
   slug,
   color,
   metric,
+  ownership,
   core,
 }: {
   id: string
@@ -91,6 +94,8 @@ function MapNode({
   slug?: CaseSlug
   color?: string
   metric?: string
+  /** My part, e.g. "Led · team of 2" */
+  ownership?: string
   core?: boolean
 }) {
   const [x, y] = POSITIONS[id]
@@ -109,6 +114,7 @@ function MapNode({
         <a href={caseHref(slug)} className="block px-4 py-2.5">
           <span className="block text-sm font-semibold text-ink">{label}</span>
           <span className="block text-xs text-(--c)">{metric}</span>
+          <span className="mt-1 block text-[11px] text-ink-muted">My part: {ownership}</span>
         </a>
       </li>
     )
@@ -137,7 +143,10 @@ function CaseRow({ slug }: { slug: CaseSlug }) {
         className="flex items-center justify-between gap-3 rounded-xl border bg-night-800 px-4 py-3"
         style={{ borderColor: `${item.node.color}66` }}
       >
-        <span className="font-semibold">{item.title}</span>
+        <span>
+          <span className="block font-semibold">{item.title}</span>
+          <span className="block text-xs text-ink-muted">My part: {item.ownership}</span>
+        </span>
         <span className="text-right text-xs" style={{ color: item.node.color }}>
           {item.headlineMetric}
         </span>
@@ -207,6 +216,7 @@ function Map2D() {
             slug={item.slug}
             color={item.node.color}
             metric={item.headlineMetric}
+            ownership={item.ownership}
           />
         ))}
       </ul>

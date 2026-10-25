@@ -162,8 +162,25 @@ export function Lightbox({ images, index, onIndexChange, title }: Props) {
               <ChevronLeft className="size-5" />
             </button>
           )}
-          <DialogDescription className="flex-1 text-center text-sm text-ink-muted">
-            {current?.caption ?? current?.alt}
+          <DialogDescription asChild>
+            <div className="flex-1 text-center text-sm text-ink-muted">
+              <p className="text-ink">{current?.caption ?? current?.alt}</p>
+              {(current?.contribution || current?.why) && (
+                <p className="mt-1 text-xs">
+                  {current.contribution && (
+                    <>
+                      <span className="text-cyan">My part:</span> {current.contribution}
+                    </>
+                  )}
+                  {current.contribution && current.why && ' · '}
+                  {current.why && (
+                    <>
+                      <span className="text-cyan">Why it mattered:</span> {current.why}
+                    </>
+                  )}
+                </p>
+              )}
+            </div>
           </DialogDescription>
           {many && (
             <button

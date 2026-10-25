@@ -171,6 +171,12 @@ export function CaseNode({ item }: { item: CaseStudy }) {
           >
             {item.headlineMetric} · Open case →
           </p>
+          <p
+            className="text-[11px] text-ink-muted transition-opacity duration-300"
+            style={{ opacity: isHovered ? 1 : 0 }}
+          >
+            My part: {item.ownership}
+          </p>
         </div>
       </Html>
     </group>
