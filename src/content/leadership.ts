@@ -24,7 +24,7 @@ export const leadership: LeadershipStory[] = [
   {
     title: 'Agentic engineering',
     story:
-      'I introduced agentic engineering with Claude Code and Claude Skills/Agents as development tools.',
+      'I introduced agentic engineering with Claude Code and Claude Skills/Agents as development tools. It also reduced the client’s need for extra hires (confirmed by the client).',
     proof: '+40% delivery speed',
     proofNote: 'My estimate: comparable user stories, full cycle, with AI tooling vs. without',
   },

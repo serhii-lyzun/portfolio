@@ -187,10 +187,7 @@ export const cases: CaseStudy[] = [
         'Built a custom LLM-based AI agent.',
         "Built an Anthropic MCP client for the chatbot and MCP tools on the MCP server, giving the agent access to the platform's services.",
       ],
-      result: [
-        "Reduced the client's need for extra hires (confirmed by the client).",
-        'New users can start using the services right away.',
-      ],
+      result: ['New users can start using the services right away.'],
     },
     links: [],
     media: [
@@ -212,7 +209,7 @@ export const cases: CaseStudy[] = [
         ],
       },
     ],
-    headlineMetric: 'Fewer extra hires',
+    headlineMetric: 'Users start right away',
     metrics: [
       { value: 'Right away', label: 'new users start using the services' },
       { value: 'MCP', label: 'client + server tools' },
@@ -293,11 +290,11 @@ export const cases: CaseStudy[] = [
     title: 'Logistics web platform',
     tagline: 'Map-based product from scratch to MVP',
     company: 'European client (NDA)',
-    role: 'Senior Frontend Engineer in a team of 5 (Ukraine + Germany)',
+    role: 'Senior JavaScript Engineer (React), leading a team of 5 (Ukraine + Germany)',
     contribution:
-      'Built the reusable component library and the map-based features, and set up unit and snapshot testing.',
-    team: 'A team of 5 across Ukraine and Germany',
-    ownership: 'Senior FE · team of 5',
+      'Led the team of 5 and contributed to every feature, including the shared component library, the map-based features and the tests.',
+    team: 'A team of 5 across Ukraine and Germany, led by me',
+    ownership: 'Led · team of 5',
     period: '2020 – 2022',
     stack: [
       'React',
@@ -317,8 +314,9 @@ export const cases: CaseStudy[] = [
         'A new map-based logistics product had to be built from scratch, and the client needed to validate the idea fast.',
       task: 'Deliver the MVP and a UI foundation that keeps new screens fast to build.',
       action: [
-        'Built a reusable Storybook component library and the map-based features.',
-        'Set up unit and snapshot testing with Jest + React Testing Library.',
+        'Led the team of 5 and contributed to every feature of the product.',
+        'Worked on the reusable Storybook component library and the map-based features with the team.',
+        'Covered the code with unit and snapshot tests (Jest + React Testing Library).',
       ],
       result: [
         'MVP delivered in < 6 months.',

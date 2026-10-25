@@ -60,7 +60,7 @@ export const profile: Profile = {
         },
         {
           value: 'Fewer hires',
-          label: 'Needed by the client thanks to the AI agent',
+          label: 'Needed by the client thanks to AI tooling for developers',
           note: 'Confirmed by the client',
         },
       ],
