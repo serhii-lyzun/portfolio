@@ -12,7 +12,7 @@ export const leadership: LeadershipStory[] = [
     title: 'Code-quality standards',
     story:
       'I lead and mentor teams of 1–5 engineers and set code-quality standards through code reviews and technical guidance.',
-    proof: '+30% team productivity',
+    proof: '+30% team velocity',
     proofNote: 'My estimate: story points per sprint with me as team lead vs. periods without one',
   },
   {

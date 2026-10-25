@@ -73,7 +73,7 @@ export const profile: Profile = {
           value: 30,
           prefix: '+',
           suffix: '%',
-          label: 'Team productivity',
+          label: 'Team velocity',
           note: 'Story points per sprint with me as team lead vs. periods without one',
         },
         {
