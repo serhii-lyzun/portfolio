@@ -100,6 +100,8 @@ export function Hero() {
       </div>
 
       <div
+        // Decorative for pointer purposes: crystals floating behind the portrait stay clickable
+        data-scene-through
         className={`relative order-1 mx-auto w-full max-w-[11rem] sm:max-w-sm md:order-2 md:max-w-none ${ENTER}`}
         style={{ animationDelay: '150ms', animationDuration: '1.4s' }}
       >

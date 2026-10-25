@@ -9,7 +9,7 @@ import { testimonials } from '@/content/testimonials'
 export function Contact() {
   return (
     <section aria-labelledby="contact" className="mx-auto max-w-6xl px-4 py-24 sm:px-6 sm:py-32">
-      <Reveal className="relative overflow-hidden rounded-3xl border border-ink/10 bg-night-900/70 p-8 sm:p-14">
+      <Reveal className="relative overflow-clip rounded-3xl border border-ink/10 bg-night-900/70 p-8 sm:p-14">
         <div
           aria-hidden
           className="pointer-events-none absolute -right-20 -bottom-32 size-96 rounded-full bg-coral/15 blur-3xl"

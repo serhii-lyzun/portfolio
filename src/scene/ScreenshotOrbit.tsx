@@ -92,11 +92,18 @@ function OrbitCard({ item, shots, index, texture }: CardProps) {
     setHovered(false)
     sceneCursor.set(null)
   }
+  // Same rule as the crystals: no hover (and no "Zoom" cursor) over page content
+  const move = (e: ThreeEvent<PointerEvent>) => {
+    const blocked = overPageUi(e.nativeEvent)
+    if (blocked && hovered) out()
+    else if (!blocked && !hovered) over(e)
+  }
 
   return (
     <group
       ref={group}
       onPointerOver={over}
+      onPointerMove={move}
       onPointerOut={out}
       onClick={(e) => {
         e.stopPropagation()

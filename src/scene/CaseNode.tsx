@@ -28,7 +28,7 @@ const PULL_STRENGTH = 0.35
  * case in the tour; in the tour it opens the full case.
  */
 export function CaseNode({ item }: { item: CaseStudy }) {
-  const { live, pointer, focus, setHovered } = useScene()
+  const { live, pointer, focus, hovered, setHovered } = useScene()
   const portal = useLabelPortal()
   const group = useRef<Group>(null!)
   const crystal = useRef<Group>(null!)
@@ -97,6 +97,13 @@ export function CaseNode({ item }: { item: CaseStudy }) {
     setHovered(null)
     sceneCursor.set(null)
   }
+  // The pointer can slide from empty space onto page content while still over the crystal:
+  // drop the hover there, so the cursor never promises a click that won't happen
+  const move = (e: ThreeEvent<PointerEvent>) => {
+    const blocked = overPageUi(e.nativeEvent)
+    if (blocked && hovered === item.slug) out()
+    else if (!blocked && hovered !== item.slug) over(e)
+  }
 
   return (
     <group ref={group}>
@@ -132,6 +139,7 @@ export function CaseNode({ item }: { item: CaseStudy }) {
       {/* Generous invisible hit area: crystals are small and moving */}
       <mesh
         onPointerOver={over}
+        onPointerMove={move}
         onPointerOut={out}
         onClick={(e) => {
           e.stopPropagation()
