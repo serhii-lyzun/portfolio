@@ -70,6 +70,8 @@ export function CaseCard({ item, variant = 'grid' }: Props) {
         </p>
         {item.nda && <NdaBadge note={item.ndaNote} />}
 
+        <CaseSituation item={item} />
+
         <CaseContribution item={item} />
         <CaseMetrics item={item} />
 
@@ -134,5 +136,20 @@ export function CaseCard({ item, variant = 'grid' }: Props) {
         </div>
       )}
     </article>
+  )
+}
+
+/** The STAR situation, so every card opens with the problem before the contribution and results */
+function CaseSituation({ item }: { item: CaseStudy }) {
+  return (
+    <div className="rounded-2xl border border-ink/10 bg-night-800/60 p-4">
+      <h4
+        className="text-xs font-semibold tracking-wider uppercase"
+        style={{ color: item.node.color }}
+      >
+        Situation
+      </h4>
+      <p className="mt-1.5 text-sm leading-relaxed text-ink-muted">{item.star.situation}</p>
+    </div>
   )
 }

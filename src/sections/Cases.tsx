@@ -8,7 +8,7 @@ import { useCan3D } from '@/hooks/useCan3D'
 import { tour } from '@/lib/tour'
 
 const INTRO =
-  'Five commercial projects, each told in STAR format: Situation, Task, Action, Result. Open any case for the full story.'
+  'Six commercial projects, each told in STAR format: Situation, Task, Action, Result. Open any case for the full story.'
 
 /**
  * Desktop with 3D: a scroll tour. Cards scroll on the left; the constellation (fixed backdrop)

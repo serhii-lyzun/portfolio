@@ -4,7 +4,7 @@ Portfolio of **Serhii Lyzun — Senior Full-Stack Engineer (React / Node.js)**.
 
 **Live:** https://serhii-lyzun.github.io/portfolio/
 
-Five commercial case studies in STAR format (Situation, Task, Action, Result), an ecosystem map, leadership stories and LinkedIn recommendations, presented as an interactive 3D constellation.
+Six commercial case studies in STAR format (Situation, Task, Action, Result), an ecosystem map, leadership stories and LinkedIn recommendations, presented as an interactive 3D constellation.
 
 ## Stack
 

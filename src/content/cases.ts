@@ -186,7 +186,10 @@ export const cases: CaseStudy[] = [
         'Built a custom LLM-based AI agent.',
         "Built an Anthropic MCP client for the chatbot and 20 MCP tools on the MCP server, giving the agent access to the platform's services.",
       ],
-      result: ['Support requests reduced by 10%.', 'Onboarding time for new users reduced by 10%.'],
+      result: [
+        'Support requests reduced by 10% (confirmed by the client).',
+        'Onboarding time for new users reduced by 10% (confirmed by the client).',
+      ],
     },
     links: [],
     media: [
@@ -210,8 +213,8 @@ export const cases: CaseStudy[] = [
     ],
     headlineMetric: '−10% support requests',
     metrics: [
-      { value: '−10%', label: 'support requests' },
-      { value: '−10%', label: 'onboarding time for new users' },
+      { value: '−10%', label: 'support requests, confirmed by the client' },
+      { value: '−10%', label: 'onboarding time, confirmed by the client' },
       { value: '20', label: 'MCP tools on the platform' },
     ],
     node: {
