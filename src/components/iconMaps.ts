@@ -10,6 +10,7 @@ import {
   Mail,
   Map,
   Package,
+  Sparkles,
   Store,
   type LucideIcon,
 } from 'lucide-react'
@@ -24,6 +25,7 @@ export const caseIcons: Record<CaseSlug, LucideIcon> = {
   'stripe-billing': CreditCard,
   'ai-mcp': Bot,
   'map-sdk': Map,
+  'agentic-engineering': Sparkles,
   'nda-logistics': Lock,
 }
 

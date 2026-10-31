@@ -34,11 +34,10 @@ export const cases: CaseStudy[] = [
         'Designed the add-in as one more client of the shared Node.js API (same as the web app and the Map SDK), so routing rules live in one place.',
         'Built the UI in React + TypeScript on the Office Add-ins API, together with the Senior Frontend Engineer. Users select cell ranges for origins and destinations and set the routing options (guide version, routing type, truck trailer length). The add-in writes distance and duration back into the sheet.',
         'Supported the location formats customers already keep in their sheets: address, city, ZIP code, lat/lon, SPLC.',
-        'Single sign-in with the existing MileMaker web-app account.',
         'Led the team through technical design, code reviews and release to the Marketplace.',
       ],
       result: [
-        'Helped the client land 2 additional major B2B customers (confirmed by the client).',
+        'By bringing truck-legal mileage into the Excel workflows B2B customers already use, the add-in helped the client land 2 additional major B2B customers (confirmed by the client).',
         'Customers calculate mileage and drive times for whole lists of routes inside Excel, with no copy-paste.',
         'The add-in reuses the shared services, so it gives the same results as the web app and the SDK.',
       ],
@@ -185,9 +184,9 @@ export const cases: CaseStudy[] = [
       task: "Let users get answers and use the platform's services through an AI chatbot.",
       action: [
         'Built a custom LLM-based AI agent.',
-        "Built an Anthropic MCP client for the chatbot and MCP tools on the MCP server, giving the agent access to the platform's services.",
+        "Built an Anthropic MCP client for the chatbot and 20 MCP tools on the MCP server, giving the agent access to the platform's services.",
       ],
-      result: ['New users can start using the services right away.'],
+      result: ['Support requests reduced by 10%.', 'Onboarding time for new users reduced by 10%.'],
     },
     links: [],
     media: [
@@ -198,7 +197,7 @@ export const cases: CaseStudy[] = [
           { id: 'user', label: 'User' },
           { id: 'chatbot', label: 'AI Chatbot', detail: 'MCP client' },
           { id: 'agent', label: 'LLM agent' },
-          { id: 'mcp', label: 'MCP server tools' },
+          { id: 'mcp', label: 'MCP server tools', detail: '20 tools' },
           { id: 'api', label: 'Platform Node.js services' },
         ],
         edges: [
@@ -209,10 +208,11 @@ export const cases: CaseStudy[] = [
         ],
       },
     ],
-    headlineMetric: 'Users start right away',
+    headlineMetric: '−10% support requests',
     metrics: [
-      { value: 'Right away', label: 'new users start using the services' },
-      { value: 'MCP', label: 'client + server tools' },
+      { value: '−10%', label: 'support requests' },
+      { value: '−10%', label: 'onboarding time for new users' },
+      { value: '20', label: 'MCP tools on the platform' },
     ],
     node: {
       color: '#34d399',
@@ -241,7 +241,8 @@ export const cases: CaseStudy[] = [
         'Built the SDK documentation website with guides and an API reference.',
       ],
       result: [
-        "Developers at Enterprise-plan customers can add MileMaker's truck-legal routing and maps to their own applications from a public npm package, following the docs.",
+        "Developers at Enterprise-plan customers add MileMaker's truck-legal routing and maps to their own applications from a public npm package, following the docs.",
+        '12,000+ npm downloads in the last 12 months (~2,000 a month) and 38 releases (npm stats, October 2026).',
       ],
     },
     links: [
@@ -274,9 +275,10 @@ export const cases: CaseStudy[] = [
         why: 'Routing ships to customers as a standard JavaScript dependency.',
       },
     ],
-    headlineMetric: 'Public SDK + docs',
+    headlineMetric: '12k+ npm downloads / year',
     metrics: [
-      { value: 'npm', label: 'public TypeScript package' },
+      { value: '12k+', label: 'npm downloads in the last 12 months' },
+      { value: '38', label: 'releases on npm' },
       { value: 'Docs', label: 'guides and API reference for self-service integration' },
     ],
     node: {
@@ -286,13 +288,70 @@ export const cases: CaseStudy[] = [
     },
   },
   {
+    slug: 'agentic-engineering',
+    title: 'Agentic engineering for the team',
+    tagline: 'Claude Code, Skills and Agents as everyday development tools',
+    company: INTELLIAS_USA,
+    role: LEAD_ROLE,
+    contribution:
+      'As team lead, I introduced agentic engineering to the team: Claude Code, plus Claude Skills and Agents as development tools.',
+    team: 'Me, as team lead, for the engineering team',
+    ownership: 'Introduced · team-wide',
+    period: MILEMAKER_PERIOD,
+    stack: ['Claude Code', 'Claude Skills', 'Claude Agents', 'TypeScript', 'Node.js', 'React'],
+    star: {
+      situation:
+        'The platform kept growing (8+ sub-systems), and delivering more with the same small team would otherwise have meant extra hires.',
+      task: 'Make the team deliver comparable user stories faster without lowering code quality.',
+      action: [
+        'Introduced Claude Code to the team as an everyday development tool.',
+        'Introduced Claude Skills and Agents as development tools for the team.',
+        'Kept code reviews as the quality gate for AI-assisted changes.',
+      ],
+      result: [
+        "Reduced the client's need for extra hires (confirmed by the client).",
+        '+40% delivery speed: the full delivery cycle of comparable user stories, with AI tooling vs. without (my estimate).',
+      ],
+    },
+    links: [],
+    media: [
+      {
+        kind: 'diagram',
+        caption: 'How a user story goes through the AI-assisted workflow',
+        nodes: [
+          { id: 'story', label: 'User story' },
+          { id: 'claude', label: 'Claude Code', detail: 'Skills + Agents' },
+          { id: 'code', label: 'Code + tests' },
+          { id: 'review', label: 'Code review', detail: 'quality gate' },
+          { id: 'release', label: 'Release' },
+        ],
+        edges: [
+          ['story', 'claude'],
+          ['claude', 'code'],
+          ['code', 'review'],
+          ['review', 'release'],
+        ],
+      },
+    ],
+    headlineMetric: 'Fewer hires needed',
+    metrics: [
+      { value: 'Fewer hires', label: 'needed by the client, confirmed by the client' },
+      { value: '+40%', label: 'delivery speed (my estimate)' },
+    ],
+    node: {
+      color: '#38bdf8',
+      size: 1,
+      orbit: { radius: 4.7, speed: 0.21, phase: 4.62, tilt: 0.55 },
+    },
+  },
+  {
     slug: 'nda-logistics',
     title: 'Logistics web platform',
     tagline: 'Map-based product from scratch to MVP',
     company: 'European client (NDA)',
     role: 'Senior JavaScript Engineer (React), leading a team of 5 (Ukraine + Germany)',
     contribution:
-      'Led the team of 5 and contributed to every feature, including the shared component library, the map-based features and the tests.',
+      'Led the team of 5 and contributed to every feature. I built about half of the shared Storybook component library and worked on the map-based features and the tests.',
     team: 'A team of 5 across Ukraine and Germany, led by me',
     ownership: 'Led · team of 5',
     period: '2020 – 2022',
@@ -315,12 +374,12 @@ export const cases: CaseStudy[] = [
       task: 'Deliver the MVP and a UI foundation that keeps new screens fast to build.',
       action: [
         'Led the team of 5 and contributed to every feature of the product.',
-        'Worked on the reusable Storybook component library and the map-based features with the team.',
+        'Built about half of the reusable Storybook component library, so the team could assemble new screens from shared components.',
+        'Worked on the map-based features with the team.',
         'Covered the code with unit and snapshot tests (Jest + React Testing Library).',
       ],
       result: [
-        'MVP delivered in < 6 months.',
-        'Component library covers ~70% of the UI, so new screens are built from shared components.',
+        'The component library (about half of it built by me) covers ~70% of the UI. New screens are built from shared components, which helped ship the MVP in < 6 months.',
         '80%+ unit/snapshot test coverage, so regression checks run automatically with every change.',
       ],
     },

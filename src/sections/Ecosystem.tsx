@@ -20,6 +20,7 @@ const POSITIONS: Record<string, [x: number, y: number]> = {
   stripe: [67, 6],
   'ai-mcp': [67, 76],
   llm: [67, 94],
+  'agentic-engineering': [83, 87],
   'nda-logistics': [89, 50],
 }
 

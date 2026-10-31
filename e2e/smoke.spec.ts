@@ -60,9 +60,9 @@ test('a case deep link opens the full STAR case and Esc closes it', async ({ pag
 test('every case has a full case view reachable from the page', async ({ page }) => {
   await page.goto('./?3d=off')
   const links = page.getByRole('link', { name: /^Read the full case/ })
-  await expect(links).toHaveCount(5)
+  await expect(links).toHaveCount(6)
 
-  await links.nth(4).click()
+  await links.nth(5).click()
   await expect(page.getByRole('dialog', { name: 'Logistics web platform' })).toBeVisible()
   await expect(
     page.getByText(/^Client name, product and screenshots are under NDA/).last(),
@@ -136,5 +136,5 @@ test('desktop: the 3D scene loads after the page and drives the case tour', asyn
   test.skip(!webgl, 'this browser has no WebGL')
 
   await expect(page.locator('canvas')).toHaveCount(1, { timeout: 15_000 })
-  await expect(page.locator('[data-case]')).toHaveCount(5)
+  await expect(page.locator('[data-case]')).toHaveCount(6)
 })

@@ -51,8 +51,8 @@ describe('profile', () => {
 })
 
 describe('cases', () => {
-  it('has the 5 commercial cases with unique slugs', () => {
-    expect(cases).toHaveLength(5)
+  it('has the 6 commercial cases with unique slugs', () => {
+    expect(cases).toHaveLength(6)
     expect(new Set(cases.map((c) => c.slug)).size).toBe(cases.length)
   })
 

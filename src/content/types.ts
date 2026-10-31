@@ -36,7 +36,8 @@ export type CaseLink = {
   kind: CaseLinkKind
 }
 
-export type CaseSlug = 'excel-add-in' | 'stripe-billing' | 'ai-mcp' | 'map-sdk' | 'nda-logistics'
+export type CaseSlug =
+  'excel-add-in' | 'stripe-billing' | 'ai-mcp' | 'map-sdk' | 'agentic-engineering' | 'nda-logistics'
 
 export type CaseStudy = {
   slug: CaseSlug

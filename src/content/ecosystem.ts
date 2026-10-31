@@ -8,7 +8,7 @@ export const ecosystem: EcosystemNode[] = [
   { id: CORE_ID, label: 'Node.js API', kind: 'core', connectsTo: [] },
   { id: 'web', label: 'Web App', kind: 'channel', connectsTo: [CORE_ID] },
   { id: 'here', label: 'HERE Maps', kind: 'service', connectsTo: [CORE_ID] },
-  { id: 'llm', label: 'LLM APIs', kind: 'service', connectsTo: ['ai-mcp'] },
+  { id: 'llm', label: 'LLM APIs', kind: 'service', connectsTo: ['ai-mcp', 'agentic-engineering'] },
   {
     id: 'marketplace',
     label: 'Microsoft Marketplace',
